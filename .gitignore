@@ -9,3 +9,5 @@ dist
 !.env.example
 coverage
 web-ext.config.ts
+test-results
+playwright-report
