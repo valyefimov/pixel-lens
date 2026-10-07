@@ -1,0 +1,149 @@
+@import "tailwindcss";
+@import "@fontsource-variable/inter";
+@import "@fontsource-variable/jetbrains-mono";
+
+@theme {
+  --font-sans: "Inter Variable", ui-sans-serif, system-ui, sans-serif;
+  --font-mono: "JetBrains Mono Variable", ui-monospace, "SF Mono", Menlo, monospace;
+
+  --color-ink-950: #08080a;
+  --color-ink-900: #0e0e12;
+  --color-ink-850: #131318;
+  --color-ink-800: #18181e;
+  --color-ink-700: #23232b;
+  --color-ink-600: #2f2f39;
+  --color-ink-400: #6d6d7a;
+  --color-ink-300: #8e8e9b;
+  --color-ink-200: #b8b8c4;
+  --color-ink-100: #e4e4ea;
+  --color-ink-50: #f4f4f7;
+
+  --color-lens-300: #c4b7ff;
+  --color-lens-400: #a18bff;
+  --color-lens-500: #7c5cff;
+  --color-lens-600: #6845f5;
+
+  --color-measure: #ff2d78;
+  --color-guide: #00b3ff;
+  --color-ok: #2fd27a;
+  --color-margin: rgba(246, 178, 107, 0.35);
+  --color-padding: rgba(147, 196, 125, 0.4);
+  --color-content: rgba(111, 168, 220, 0.35);
+
+  --animate-blink: blink 1s steps(2, start) infinite;
+  @keyframes blink {
+    to {
+      visibility: hidden;
+    }
+  }
+}
+
+@layer base {
+  :root {
+    color-scheme: dark;
+  }
+  html {
+    background: var(--color-ink-950);
+    color: var(--color-ink-100);
+    -webkit-font-smoothing: antialiased;
+    scroll-behavior: smooth;
+    scroll-padding-top: 5rem;
+  }
+  ::selection {
+    background: rgba(124, 92, 255, 0.45);
+    color: white;
+  }
+  :focus-visible {
+    outline: 2px solid var(--color-lens-500);
+    outline-offset: 2px;
+    border-radius: 4px;
+  }
+}
+
+/* Declared as a utility so other classes can @apply it (Tailwind v4). */
+@utility btn {
+  @apply inline-flex items-center justify-center gap-2 rounded-xl px-5 py-3 text-sm font-semibold transition;
+}
+
+@layer components {
+  /* A faint 8px baseline grid, the visual signature of the site. */
+  .bg-grid {
+    background-image:
+      linear-gradient(to right, rgba(255, 255, 255, 0.035) 1px, transparent 1px),
+      linear-gradient(to bottom, rgba(255, 255, 255, 0.035) 1px, transparent 1px);
+    background-size: 32px 32px;
+  }
+  .glow {
+    background: radial-gradient(60% 50% at 50% 0%, rgba(124, 92, 255, 0.22), transparent 70%);
+  }
+  .card {
+    @apply rounded-2xl border border-white/[0.07] bg-ink-900/80;
+  }
+  .eyebrow {
+    @apply font-mono text-[11px] font-medium tracking-[0.14em] text-lens-400 uppercase;
+  }
+  .btn-primary {
+    @apply btn bg-lens-500 text-white shadow-[0_8px_30px_-8px_rgba(124,92,255,0.7)] hover:bg-lens-400;
+  }
+  .btn-ghost {
+    @apply btn border border-white/10 bg-white/[0.03] text-ink-100 hover:bg-white/[0.07];
+  }
+  .kbd {
+    @apply inline-grid min-w-6 place-items-center rounded-md border border-white/10 bg-white/[0.06] px-1.5 py-0.5 font-mono text-[11px] text-ink-100;
+  }
+  /* Small dimension tag, like the ones the extension draws. */
+  .dim-tag {
+    @apply rounded bg-measure px-1.5 py-0.5 font-mono text-[10px] font-semibold text-white;
+  }
+  .prose-docs {
+    @apply text-ink-200 leading-7;
+  }
+  .prose-docs h2 {
+    @apply mt-14 mb-4 scroll-mt-24 text-2xl font-semibold tracking-tight text-white;
+  }
+  .prose-docs h3 {
+    @apply mt-8 mb-3 text-lg font-semibold text-white;
+  }
+  .prose-docs p {
+    @apply my-4;
+  }
+  .prose-docs a {
+    @apply text-lens-300 underline decoration-lens-500/40 underline-offset-4 hover:decoration-lens-300;
+  }
+  .prose-docs ul {
+    @apply my-4 list-disc space-y-2 pl-5 marker:text-ink-400;
+  }
+  .prose-docs ol {
+    @apply my-4 list-decimal space-y-2 pl-5 marker:text-ink-400;
+  }
+  .prose-docs code:not(pre code) {
+    @apply rounded bg-white/[0.07] px-1.5 py-0.5 font-mono text-[0.85em] text-ink-50;
+  }
+  .prose-docs pre {
+    @apply my-5 overflow-x-auto rounded-xl border border-white/[0.07] bg-ink-900 p-4 font-mono text-[13px] leading-6 text-ink-100;
+  }
+  .prose-docs table {
+    @apply my-5 w-full border-collapse text-sm;
+  }
+  .prose-docs th {
+    @apply border-b border-white/10 py-2 pr-4 text-left font-medium text-ink-300;
+  }
+  .prose-docs td {
+    @apply border-b border-white/[0.05] py-2.5 pr-4 align-top;
+  }
+  .prose-docs strong {
+    @apply font-semibold text-white;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+  }
+}
