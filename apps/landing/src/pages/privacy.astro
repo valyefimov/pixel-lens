@@ -1,0 +1,45 @@
+---
+import Base from "../layouts/Base.astro";
+import { SITE } from "../site";
+---
+
+<Base title="Privacy" description="Pixel Lens collects no data. Here is exactly what the extension stores and why.">
+  <article class="prose-docs mx-auto max-w-2xl px-4 py-16 sm:px-6">
+    <p class="eyebrow">Privacy policy</p>
+    <h1 class="mt-3 text-4xl font-semibold tracking-tight text-white">Pixel Lens collects nothing.</h1>
+    <p class="text-ink-400">Last updated: October 15, 2026</p>
+
+    <h2>What the extension stores</h2>
+    <ul>
+      <li>Your preferences (color format, grid settings, toggles).</li>
+      <li>Live CSS edits you make, keyed by page URL, so they can be re-applied when you come back.</li>
+      <li>Agent bridge settings (on/off and port).</li>
+    </ul>
+    <p>
+      All of it lives in your browser's extension storage (<code>chrome.storage.local</code>) and never leaves your device. Uninstalling the
+      extension deletes it.
+    </p>
+
+    <h2>What it does not do</h2>
+    <ul>
+      <li>No analytics, telemetry, crash reporting or tracking.</li>
+      <li>No accounts and no remote servers.</li>
+      <li>No remotely hosted code: everything that runs ships inside the extension package.</li>
+      <li>It does not read pages in the background. It only runs on a tab after you invoke it.</li>
+    </ul>
+
+    <h2>The agent bridge</h2>
+    <p>
+      If you turn on the agent bridge, the extension connects to an MCP server on your own computer at <code>127.0.0.1</code>. Data about the
+      active tab (element styles, measurements, screenshots you or your agent request) is sent to that local server and from there to the AI
+      client you configured. What that client does with it is governed by its own privacy policy. Turn the bridge off at any time from the
+      options page.
+    </p>
+
+    <h2>This website</h2>
+    <p>This site is static HTML with no cookies and no analytics.</p>
+
+    <h2>Contact</h2>
+    <p>Questions? Open an issue on <a href={SITE.github}>GitHub</a>.</p>
+  </article>
+</Base>
