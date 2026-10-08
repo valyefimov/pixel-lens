@@ -1,0 +1,256 @@
+---
+import Base from "../layouts/Base.astro";
+import { SITE } from "../site";
+
+const toc = [
+  ["install", "Install"],
+  ["quick-start", "Quick start"],
+  ["tools", "Tools"],
+  ["shortcuts", "Keyboard shortcuts"],
+  ["mcp", "Agent bridge (MCP)"],
+  ["privacy", "Permissions & privacy"],
+  ["architecture", "Architecture"],
+  ["development", "Development"],
+  ["troubleshooting", "Troubleshooting"],
+];
+
+const shortcuts = [
+  ["I", "Inspect: hover for the floating inspector, click to select"],
+  ["M", "Measure: distances from the selection (or the parent) to the hovered element"],
+  ["R", "Ruler: drag to measure an area, click the rulers to add guides"],
+  ["E", "Live edit: edit CSS of the selected element, double-click to edit text"],
+  ["K", "Eyedropper: sample any pixel on screen"],
+  ["G", "Toggle the layout grid"],
+  ["X", "Toggle X-ray outlines on every element"],
+  ["O", "Design overlay settings"],
+  ["C · T · A · U · P · D", "Colors · Typography · Assets · Audit · Page insights · Changes"],
+  ["?", "Show all shortcuts"],
+  ["Alt (hold)", "Measure from the selection while inspecting"],
+  ["Space", "Pin the selected element's card for side-by-side comparison"],
+  ["↑ ↓ ← →", "Select parent, first child, previous or next sibling"],
+  ["Shift + drag", "Ruler: constrain to a square and keep previous measurements"],
+  ["Alt + drag", "Ruler: disable snapping"],
+  ["Esc", "Clear rulers → deselect → close panel → exit"],
+];
+
+const tools = [
+  ["page_summary", "URL, title, viewport, fonts and main palette of the active tab"],
+  ["inspect_element", "Size, position, box model, key computed styles and Tailwind classes for a selector"],
+  ["query_elements", "The same for every match of a selector (up to 100)"],
+  ["measure_distance", "Edge-to-edge distance between two elements, or inner offsets if one contains the other"],
+  ["audit_contrast", "WCAG AA or AAA contrast failures, worst first"],
+  ["apply_styles", "Live-edit CSS on the page; returns the running diff"],
+  ["set_text", "Replace an element's text to test copy and overflow"],
+  ["get_changes", "All live edits as a diff and as plain CSS"],
+  ["revert_changes", "Undo every live edit"],
+  ["screenshot", "PNG of the visible tab or of a single element"],
+  ["bridge_status", "Whether the extension is connected"],
+];
+---
+
+<Base title="Documentation" description="Install Pixel Lens, learn every tool and shortcut, and connect it to your AI coding agent over MCP.">
+  <div class="mx-auto grid max-w-6xl gap-12 px-4 py-16 sm:px-6 lg:grid-cols-[200px_1fr]">
+    <aside class="hidden lg:block">
+      <nav class="sticky top-24 space-y-1 text-sm" aria-label="On this page">
+        <p class="eyebrow mb-3">On this page</p>
+        {
+          toc.map(([id, label]) => (
+            <a href={`#${id}`} class="block rounded-md px-2 py-1.5 text-ink-300 transition hover:bg-white/[0.04] hover:text-white">
+              {label}
+            </a>
+          ))
+        }
+      </nav>
+    </aside>
+
+    <article class="prose-docs min-w-0 max-w-3xl">
+      <p class="eyebrow">Documentation</p>
+      <h1 class="mt-3 text-4xl font-semibold tracking-tight text-white">Pixel Lens docs</h1>
+      <p class="text-lg text-ink-300">
+        Everything you need to install the extension, use each tool, and let an AI agent work with the page you're looking at.
+      </p>
+
+      <h2 id="install">Install</h2>
+      <p>
+        The Chrome Web Store listing is on its way. Until then, build it from source; it takes about a minute and you need Node.js 22+
+        and pnpm.
+      </p>
+      <pre><code>git clone {SITE.github}.git
+cd pixel-lens
+pnpm install
+pnpm --filter @pixel-lens/extension build</code></pre>
+      <ol>
+        <li>Open <code>chrome://extensions</code> (or <code>edge://extensions</code>, <code>brave://extensions</code>).</li>
+        <li>Turn on <strong>Developer mode</strong>.</li>
+        <li>Click <strong>Load unpacked</strong> and choose <code>apps/extension/.output/chrome-mv3</code>.</li>
+        <li>Pin Pixel Lens to the toolbar.</li>
+      </ol>
+      <p>For Firefox (experimental), run <code>pnpm --filter @pixel-lens/extension build:firefox</code> and load the add-on from <code>about:debugging</code>.</p>
+
+      <h2 id="quick-start">Quick start</h2>
+      <ol>
+        <li>Open any page and click the Pixel Lens icon, or press <kbd class="kbd">Alt</kbd> <kbd class="kbd">Shift</kbd> <kbd class="kbd">P</kbd>.</li>
+        <li>Hover elements. The floating card shows size, box model, typography, colors and contrast.</li>
+        <li>Click an element to select it, then hold <kbd class="kbd">Alt</kbd> and hover another to see the distance between them.</li>
+        <li>Press <kbd class="kbd">?</kbd> for all shortcuts and <kbd class="kbd">Esc</kbd> to leave.</li>
+      </ol>
+      <p>While an element tool is active, clicks on the page select elements instead of following links or pressing buttons.</p>
+
+      <h2 id="tools">Tools</h2>
+      <h3>Inspect</h3>
+      <p>
+        The floating card follows your cursor and shows the element's tag and selector, rendered size, a box model diagram (margin, border,
+        padding, content), typography, text and background colors with the WCAG contrast ratio, layout properties, borders, shadows and the
+        equivalent Tailwind v4 classes. Click to stick it to the selection; <strong>Copy CSS</strong> copies the non-default computed styles as a rule.
+        Press <kbd class="kbd">Space</kbd> to pin cards and compare several elements.
+      </p>
+      <h3>Measure</h3>
+      <p>
+        Shows edge-to-edge distances between the selected element and the one under the cursor. If one element contains the other you get the
+        four inner offsets instead. With nothing selected, the Measure tool measures the hovered element against its parent, which is the
+        quickest way to read padding and alignment.
+      </p>
+      <h3>Ruler & guides</h3>
+      <p>
+        Drag anywhere to measure a rectangle. Edges snap to nearby elements and guides (hold <kbd class="kbd">Alt</kbd> to disable snapping).
+        Click the top or left ruler to drop a guide, drag it to reposition, drag it back onto the ruler to delete it. Distances between
+        neighbouring guides are labelled.
+      </p>
+      <h3>Layout grid & X-ray</h3>
+      <p>
+        <kbd class="kbd">G</kbd> overlays a centred column grid (columns, gutter, margin, max width and color are configurable in Settings).
+        <kbd class="kbd">X</kbd> outlines every element so you can see the page structure at a glance.
+      </p>
+      <h3>Design overlay</h3>
+      <p>
+        Paste an image from your clipboard or drop a file onto the page to lay a design export over it. Drag to align, nudge with arrow keys
+        (<kbd class="kbd">Shift</kbd> for 10px), adjust opacity and scale, lock it to click through, and switch on <strong>difference</strong>
+        blending: identical pixels turn black, every mismatch lights up. Files named <code>@2x</code> are scaled to 50% automatically.
+      </p>
+      <h3>Live edit</h3>
+      <p>
+        Select an element and edit any property in the panel. Press <kbd class="kbd">↑</kbd>/<kbd class="kbd">↓</kbd> in a numeric field to
+        nudge by 1 (<kbd class="kbd">Shift</kbd> for 10). You can edit the selector the change applies to, add arbitrary properties, hide,
+        duplicate or delete elements, and double-click text to rewrite it. Style edits are stored per page and re-applied next time you open
+        Pixel Lens there. The Changes panel shows a diff you can copy as a patch, as CSS, or as a ready-made prompt for your coding agent.
+      </p>
+      <h3>Colors, typography, assets</h3>
+      <ul>
+        <li><strong>Colors</strong>: eyedropper for any pixel, the page palette with usage counts, gradients, and HEX/RGB/HSL/OKLCH output. Export the palette as CSS custom properties.</li>
+        <li><strong>Typography</strong>: every font family with its size/line-height/weight combinations. Copy a type scale or a <code>font</code> shorthand.</li>
+        <li><strong>Assets</strong>: images, inline SVGs, CSS background images and videos. Download them or copy SVG markup.</li>
+      </ul>
+      <h3>Audit & page insights</h3>
+      <ul>
+        <li><strong>Contrast</strong>: scans all visible text against its composited background and lists AA or AAA failures. Click one to select it.</li>
+        <li><strong>SEO basics</strong>: title, meta description, single H1, heading order, <code>lang</code>, canonical, viewport, image alt text, Open Graph image.</li>
+        <li><strong>Page insights</strong>: transfer size by resource type, detected frameworks, the social preview card and viewport info.</li>
+      </ul>
+
+      <h2 id="shortcuts">Keyboard shortcuts</h2>
+      <table>
+        <thead><tr><th>Key</th><th>Action</th></tr></thead>
+        <tbody>
+          {shortcuts.map(([k, v]) => <tr><td class="whitespace-nowrap"><kbd class="kbd">{k}</kbd></td><td>{v}</td></tr>)}
+        </tbody>
+      </table>
+      <p>Shortcuts are ignored while you type in an input or an editable element.</p>
+
+      <h2 id="mcp">Agent bridge (MCP)</h2>
+      <p>
+        The bridge lets an MCP client such as Claude Code, Cursor or Windsurf work with the tab you have open. It has two parts: the
+        <code>@pixel-lens/mcp</code> server, which your agent starts, and the extension, which connects to it over a local WebSocket.
+      </p>
+      <h3>1. Add the server to your client</h3>
+      <pre><code># Claude Code
+claude mcp add pixel-lens -- npx -y @pixel-lens/mcp
+
+# Any client that reads an mcpServers config
+{`{
+  "mcpServers": {
+    "pixel-lens": { "command": "npx", "args": ["-y", "@pixel-lens/mcp"] }
+  }
+}`}</code></pre>
+      <p>Until the package is on npm, point the client at your local build: <code>node packages/mcp/dist/cli.mjs</code> (run <code>pnpm --filter @pixel-lens/mcp build</code> first).</p>
+      <h3>2. Turn on the bridge in the extension</h3>
+      <p>
+        Open the Pixel Lens options page (right-click the icon → Options, or Settings → Open bridge settings), switch on
+        <strong>Agent Bridge</strong> and grant site access. The status dot turns green once the server is running.
+      </p>
+      <h3>3. Ask your agent</h3>
+      <p>“Measure the gap between the logo and the nav, make it 24px, screenshot the header and apply the change to the code.”</p>
+      <h3>Tools</h3>
+      <table>
+        <thead><tr><th>Tool</th><th>What it does</th></tr></thead>
+        <tbody>
+          {tools.map(([k, v]) => <tr><td><code>{k}</code></td><td>{v}</td></tr>)}
+        </tbody>
+      </table>
+      <h3>Port & security</h3>
+      <ul>
+        <li>The server listens on <code>127.0.0.1:7331</code> only. Change it with <code>--port</code> or <code>PIXEL_LENS_PORT</code>, and set the same port in the options page.</li>
+        <li>Connections from web pages are refused: only <code>chrome-extension://</code> and <code>moz-extension://</code> origins are accepted.</li>
+        <li>The agent always acts on the active tab of the focused window, so you stay in control of what it sees.</li>
+      </ul>
+
+      <h2 id="privacy">Permissions & privacy</h2>
+      <table>
+        <thead><tr><th>Permission</th><th>Why</th></tr></thead>
+        <tbody>
+          <tr><td><code>activeTab</code></td><td>Run on the tab where you click the icon or press the shortcut, and nowhere else.</td></tr>
+          <tr><td><code>scripting</code></td><td>Inject the overlay into that tab on demand.</td></tr>
+          <tr><td><code>storage</code></td><td>Remember your preferences and per-page live edits, locally.</td></tr>
+          <tr><td><code>alarms</code></td><td>Wake the background worker so the agent bridge can reconnect.</td></tr>
+          <tr><td>All sites (optional)</td><td>Requested only when you enable the agent bridge, so the agent can read the active tab without a click.</td></tr>
+        </tbody>
+      </table>
+      <p>No analytics, no remote code, no accounts. See the <a href="/privacy">privacy policy</a>.</p>
+
+      <h2 id="architecture">Architecture</h2>
+      <p>The repository is a pnpm monorepo:</p>
+      <pre><code>apps/extension   WXT + React browser extension
+apps/landing     this site (Astro, static)
+packages/core    geometry, color, Tailwind mapping, CSS diff, bridge protocol
+packages/mcp     MCP server + WebSocket bridge</code></pre>
+      <ul>
+        <li>
+          <strong>Background worker</strong> (<code>entrypoints/background.ts</code>) handles the toolbar click and shortcut, injects the
+          overlay with <code>scripting.executeScript</code>, captures screenshots and runs the WebSocket client for the bridge.
+        </li>
+        <li>
+          <strong>Overlay</strong> (<code>entrypoints/overlay.content</code>) is a runtime-registered content script. Its React UI renders
+          into a shadow root so page CSS and overlay CSS never mix. A tiny external store drives the layers (SVG highlights, rulers, grid),
+          the inspector card, the dock and the panels.
+        </li>
+        <li>
+          <strong>Design overlay</strong> renders into a separate light-DOM host: the overlay host is a stacking context, which would
+          isolate <code>mix-blend-mode</code> from the page.
+        </li>
+        <li>
+          <strong>Live edits</strong> are written as <code>selector {"{"} prop: value !important {"}"}</code> rules into one
+          <code>&lt;style&gt;</code> element instead of inline styles, so reverting is trivial and edits behave like real stylesheet changes.
+        </li>
+        <li>
+          <strong>Core</strong> is framework-free and fully unit-tested. The landing page demo imports the same measurement code as the
+          extension.
+        </li>
+      </ul>
+
+      <h2 id="development">Development</h2>
+      <pre><code>pnpm install
+pnpm dev:ext        # extension with hot reload (opens a browser)
+pnpm dev:web        # this site on localhost:4321
+pnpm test           # unit tests (core, mcp)
+pnpm --filter @pixel-lens/extension test:e2e   # Playwright, real Chromium
+pnpm build          # everything</code></pre>
+
+      <h2 id="troubleshooting">Troubleshooting</h2>
+      <ul>
+        <li><strong>Nothing happens on click.</strong> Browsers block extensions on <code>chrome://</code> pages, the Web Store and some PDF viewers.</li>
+        <li><strong>The eyedropper is missing.</strong> It relies on the EyeDropper API, available in Chromium browsers only.</li>
+        <li><strong>Bridge stays yellow.</strong> Make sure your MCP client started the server and that both use the same port. Only one server can own a port.</li>
+        <li><strong>Assets won't download.</strong> Cross-origin files without CORS open in a new tab instead; save them from there.</li>
+      </ul>
+    </article>
+  </div>
+</Base>
