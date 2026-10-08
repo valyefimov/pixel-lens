@@ -1,0 +1,47 @@
+---
+/** A static transcript of an agent using the Pixel Lens MCP tools. */
+const lines = [
+  { kind: "user", text: "The pricing cards feel cramped. Check the spacing and fix it." },
+  { kind: "tool", name: "query_elements", args: `{ selector: ".pricing .card" }` },
+  { kind: "out", text: "3 elements · 320×412 · padding 20 · gap 12 · radius 8px" },
+  { kind: "tool", name: "measure_distance", args: `{ from: ".card:nth-child(1)", to: ".card:nth-child(2)" }` },
+  { kind: "out", text: "x: 12px" },
+  { kind: "tool", name: "apply_styles", args: `{ selector: ".pricing", styles: { gap: "24px" } }` },
+  { kind: "tool", name: "apply_styles", args: `{ selector: ".pricing .card", styles: { padding: "28px" } }` },
+  { kind: "tool", name: "screenshot", args: `{ selector: ".pricing" }` },
+  { kind: "out", text: "image/png · 1032×460" },
+  { kind: "agent", text: "Looks balanced now. Porting the diff to src/components/Pricing.tsx…" },
+];
+---
+
+<div class="card overflow-hidden font-mono text-[12.5px] leading-6">
+  <div class="flex items-center gap-2 border-b border-white/[0.06] bg-ink-850 px-4 py-3 text-ink-400">
+    <span class="size-2.5 rounded-full bg-white/15"></span>
+    <span class="size-2.5 rounded-full bg-white/15"></span>
+    <span class="size-2.5 rounded-full bg-white/15"></span>
+    <span class="ml-3 text-[11px]">claude · pixel-lens connected</span>
+  </div>
+  <div class="space-y-1.5 p-5">
+    {
+      lines.map((l) =>
+        l.kind === "user" ? (
+          <p class="text-white">
+            <span class="text-lens-400">›</span> {l.text}
+          </p>
+        ) : l.kind === "tool" ? (
+          <p class="text-ink-300">
+            <span class="text-ok">⏺</span> pixel-lens · <span class="text-guide">{l.name}</span>
+            <span class="text-ink-400">{l.args}</span>
+          </p>
+        ) : l.kind === "out" ? (
+          <p class="pl-5 text-ink-400">⎿ {l.text}</p>
+        ) : (
+          <p class="pt-2 text-ink-100">
+            {l.text}
+            <span class="ml-0.5 inline-block h-4 w-2 translate-y-0.5 animate-blink bg-lens-400" />
+          </p>
+        ),
+      )
+    }
+  </div>
+</div>
