@@ -5,7 +5,7 @@
 <h1 align="center">Pixel Lens</h1>
 
 <p align="center">
-  Measure, inspect and edit any web page.<br />
+  Rulers, specs and live CSS editing for any web page.<br />
   A free, open-source browser extension for designers and developers, with an MCP bridge for AI coding agents.
 </p>
 
@@ -22,7 +22,7 @@
 
 | Tool | What it does | Key |
 | --- | --- | --- |
-| Inspect | Floating card with size, box model, typography, colors, WCAG contrast, layout and Tailwind classes. Pin cards to compare. | `I` |
+| Inspect | Hover card with size, box model, typography, colors, WCAG contrast, layout and Tailwind classes. Pin cards to compare. | `I` |
 | Measure | Edge-to-edge distances between the selection and the hovered element. Hold `Alt` in any tool. | `M` |
 | Ruler & guides | Drag to measure an area with snapping; pull guides from the rulers. | `R` |
 | Live edit | Edit CSS and text in place. Every change is tracked, persisted per page and exported as a diff, CSS or an agent prompt. | `E` |
@@ -31,7 +31,7 @@
 | Typography | All font families and their size/weight/line-height combinations. | `T` |
 | Assets | Images, inline SVGs, background images and videos, ready to download. | `A` |
 | Audit | WCAG AA/AAA contrast failures and SEO basics, with one-click jump to the element. | `U` |
-| Page insights | Page weight by resource type, detected technologies, social preview. | `P` |
+| Page report | Page weight by resource type, detected technologies, social preview. | `P` |
 | Grid & X-ray | Configurable column grid and outlines on every element. | `G` `X` |
 | Agent bridge | Local MCP server so Claude Code, Cursor or Windsurf can inspect, measure, edit and screenshot the active tab. | |
 
@@ -96,4 +96,6 @@ Open the extension options, switch on **Agent Bridge** and grant site access. Se
 
 ## License
 
-[MIT](LICENSE) © Valentyn Yefimov
+[MIT](LICENSE) © Valentyn Yefimov. Third-party packages keep their own licenses, listed in [THIRD_PARTY_NOTICES.md](THIRD_PARTY_NOTICES.md). Trademarks, contribution rules and the originality policy are in [docs/LEGAL.md](docs/LEGAL.md).
+
+Chrome, Edge, Firefox, Brave, Arc, Figma, Claude, Cursor, Windsurf and Tailwind CSS are trademarks of their respective owners. Pixel Lens is an independent project and is not affiliated with or endorsed by them.

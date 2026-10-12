@@ -51,7 +51,7 @@ const TITLES: Record<Panel, string> = {
   fonts: "Typography",
   assets: "Assets",
   audit: "Audit",
-  page: "Page insights",
+  page: "Page report",
   edits: "Live edit",
   settings: "Settings",
   help: "Keyboard shortcuts",

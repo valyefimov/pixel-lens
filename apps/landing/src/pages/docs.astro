@@ -15,7 +15,7 @@ const toc = [
 ];
 
 const shortcuts = [
-  ["I", "Inspect: hover for the floating inspector, click to select"],
+  ["I", "Inspect: hover for the inspector card, click to select"],
   ["M", "Measure: distances from the selection (or the parent) to the hovered element"],
   ["R", "Ruler: drag to measure an area, click the rulers to add guides"],
   ["E", "Live edit: edit CSS of the selected element, double-click to edit text"],
@@ -23,7 +23,7 @@ const shortcuts = [
   ["G", "Toggle the layout grid"],
   ["X", "Toggle X-ray outlines on every element"],
   ["O", "Design overlay settings"],
-  ["C · T · A · U · P · D", "Colors · Typography · Assets · Audit · Page insights · Changes"],
+  ["C · T · A · U · P · D", "Colors · Typography · Assets · Audit · Page report · Changes"],
   ["?", "Show all shortcuts"],
   ["Alt (hold)", "Measure from the selection while inspecting"],
   ["Space", "Pin the selected element's card for side-by-side comparison"],
@@ -89,7 +89,7 @@ pnpm --filter @pixel-lens/extension build</code></pre>
       <h2 id="quick-start">Quick start</h2>
       <ol>
         <li>Open any page and click the Pixel Lens icon, or press <kbd class="kbd">Alt</kbd> <kbd class="kbd">Shift</kbd> <kbd class="kbd">P</kbd>.</li>
-        <li>Hover elements. The floating card shows size, box model, typography, colors and contrast.</li>
+        <li>Hover elements. The inspector card shows size, box model, typography, colors and contrast.</li>
         <li>Click an element to select it, then hold <kbd class="kbd">Alt</kbd> and hover another to see the distance between them.</li>
         <li>Press <kbd class="kbd">?</kbd> for all shortcuts and <kbd class="kbd">Esc</kbd> to leave.</li>
       </ol>
@@ -98,7 +98,7 @@ pnpm --filter @pixel-lens/extension build</code></pre>
       <h2 id="tools">Tools</h2>
       <h3>Inspect</h3>
       <p>
-        The floating card follows your cursor and shows the element's tag and selector, rendered size, a box model diagram (margin, border,
+        The inspector card follows your cursor and shows the element's tag and selector, rendered size, a box model diagram (margin, border,
         padding, content), typography, text and background colors with the WCAG contrast ratio, layout properties, borders, shadows and the
         equivalent Tailwind v4 classes. Click to stick it to the selection; <strong>Copy CSS</strong> copies the non-default computed styles as a rule.
         Press <kbd class="kbd">Space</kbd> to pin cards and compare several elements.
@@ -139,11 +139,11 @@ pnpm --filter @pixel-lens/extension build</code></pre>
         <li><strong>Typography</strong>: every font family with its size/line-height/weight combinations. Copy a type scale or a <code>font</code> shorthand.</li>
         <li><strong>Assets</strong>: images, inline SVGs, CSS background images and videos. Download them or copy SVG markup.</li>
       </ul>
-      <h3>Audit & page insights</h3>
+      <h3>Audit & page report</h3>
       <ul>
         <li><strong>Contrast</strong>: scans all visible text against its composited background and lists AA or AAA failures. Click one to select it.</li>
         <li><strong>SEO basics</strong>: title, meta description, single H1, heading order, <code>lang</code>, canonical, viewport, image alt text, Open Graph image.</li>
-        <li><strong>Page insights</strong>: transfer size by resource type, detected frameworks, the social preview card and viewport info.</li>
+        <li><strong>Page report</strong>: transfer size by resource type, detected frameworks, the social preview card and viewport info.</li>
       </ul>
 
       <h2 id="shortcuts">Keyboard shortcuts</h2>
