@@ -22,11 +22,11 @@ The first E2E run may ask you to install Playwright's Chromium: `pnpm --filter @
 
 ## Guidelines
 
-- **Keep math in `packages/core`.** Anything that can be expressed without the DOM (geometry, color, formatting) belongs there, with a unit test.
-- **No new permissions without discussion.** The small permission set is a feature.
-- **No network calls** from the extension, ever. The only socket is the opt-in bridge to `127.0.0.1`.
-- **Keyboard first.** New tools should have a single-key shortcut and be listed in the help panel and the docs.
-- Match the surrounding code style: explicit imports, small components, comments that explain *why*.
+- Put anything that works without the DOM (geometry, color, formatting) in `packages/core`, with a unit test.
+- Open an issue before adding a permission. The short permission list is deliberate.
+- The extension makes no network calls. The only socket is the opt-in bridge to `127.0.0.1`.
+- Give new tools a single-key shortcut and list them in the help panel and the docs.
+- Follow the surrounding code: explicit imports, small components, and comments that explain why.
 
 ## Commit messages
 
