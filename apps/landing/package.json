@@ -4,6 +4,9 @@
   "private": true,
   "type": "module",
   "description": "Marketing site and documentation for Pixel Lens.",
+  "engines": {
+    "node": ">=22.12"
+  },
   "scripts": {
     "dev": "astro dev",
     "build": "astro build",
