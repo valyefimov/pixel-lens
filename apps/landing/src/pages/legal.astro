@@ -1,0 +1,58 @@
+---
+import Base from "../layouts/Base.astro";
+import { SITE } from "../site";
+---
+
+<Base title="Terms & legal" description="License, terms of use and trademark notices for Pixel Lens.">
+  <article class="prose-docs mx-auto max-w-2xl px-4 py-16 sm:px-6">
+    <p class="eyebrow">Legal</p>
+    <h1 class="mt-3 text-4xl font-semibold tracking-tight text-white">Terms & legal</h1>
+    <p class="text-ink-400">Last updated: October 15, 2026</p>
+
+    <h2>License</h2>
+    <p>
+      Pixel Lens is open-source software released under the <a href={`${SITE.github}/blob/main/LICENSE`}>MIT license</a>. You may use, copy,
+      modify and redistribute it, including commercially, as long as you keep the copyright notice. Third-party components keep their own
+      licenses; see <a href={`${SITE.github}/blob/main/THIRD_PARTY_NOTICES.md`}>third-party notices</a>.
+    </p>
+
+    <h2>Terms of use</h2>
+    <p>
+      Pixel Lens is provided "as is", without warranty of any kind. The authors are not liable for any damage or loss that results from
+      using it, as set out in the MIT license. You are responsible for how you use it.
+    </p>
+    <p>
+      Pixel Lens reads and temporarily changes pages inside your own browser. Edits are visible only to you and are never sent to the site.
+      The asset tools download files that a page has already sent to your browser; that does not give you a license to use them. Respect the
+      copyright and terms of the sites you inspect.
+    </p>
+    <p>
+      If you connect an AI client through the agent bridge, that client's own terms and privacy policy apply to the data it receives.
+    </p>
+
+    <h2>Original work</h2>
+    <p>
+      The code, text, icons and illustrations of Pixel Lens and this website were made for this project. Features common to design-inspection
+      tools, such as rulers, box model overlays and color pickers, are implemented independently.
+    </p>
+
+    <h2>Trademarks</h2>
+    <p>
+      "Pixel Lens" and its logo identify this project. The MIT license covers the code, not the name or logo, so forks should use their own.
+    </p>
+    <p>
+      Other product names on this site only describe what Pixel Lens works with. Chrome, Edge, Firefox, Brave, Arc, Figma, Claude, Claude Code, Cursor, Windsurf and Tailwind CSS are trademarks of their respective owners. Pixel Lens is not affiliated with, endorsed by or sponsored by any of them.
+    </p>
+
+    <h2>Fonts</h2>
+    <p>
+      This site uses Inter (Copyright 2016 The Inter Project Authors) and JetBrains Mono (Copyright 2020 The JetBrains Mono Project Authors),
+      both under the <a href="https://openfontlicense.org">SIL Open Font License 1.1</a>.
+    </p>
+
+    <h2>Contact</h2>
+    <p>
+      To report a problem, including a rights claim, open an issue on <a href={`${SITE.github}/issues`}>GitHub</a>.
+    </p>
+  </article>
+</Base>
