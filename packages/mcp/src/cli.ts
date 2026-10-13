@@ -7,14 +7,14 @@ import { createServer } from "./server";
 const HELP = `pixel-lens-mcp — MCP server for the Pixel Lens browser extension
 
 Usage:
-  npx -y @pixel-lens/mcp [--port ${BRIDGE_DEFAULT_PORT}]
+  npx -y @vefimov/pixel-lens [--port ${BRIDGE_DEFAULT_PORT}]
 
 Options:
   -p, --port <n>   WebSocket port the extension connects to (default ${BRIDGE_DEFAULT_PORT})
   -h, --help       Show this help
 
 Add it to Claude Code:
-  claude mcp add pixel-lens -- npx -y @pixel-lens/mcp
+  claude mcp add pixel-lens -- npx -y @vefimov/pixel-lens
 `;
 
 // stdout belongs to the MCP protocol; everything human-readable goes to stderr.
