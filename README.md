@@ -10,8 +10,8 @@
 </p>
 
 <p align="center">
-  <a href="https://pixel-lens.dev">Website</a> ·
-  <a href="https://pixel-lens.dev/docs">Docs</a> ·
+  <a href="https://pixel-lens.yefimov.tech">Website</a> ·
+  <a href="https://pixel-lens.yefimov.tech/docs">Docs</a> ·
   <a href="docs/ARCHITECTURE.md">Architecture</a> ·
   <a href="CONTRIBUTING.md">Contributing</a>
 </p>
@@ -93,6 +93,18 @@ Open the extension options, switch on **Agent Bridge** and grant site access. Se
 | `pnpm typecheck` | TypeScript across the workspace |
 | `pnpm --filter @pixel-lens/extension test:e2e` | Playwright end-to-end tests in real Chromium, including the agent bridge |
 | `pnpm --filter @pixel-lens/extension zip` | Package the extension for store upload |
+
+## Deployment
+
+The website is deployed on Vercel at https://pixel-lens.yefimov.tech. Every push to `main` triggers a production build.
+
+`vercel.json` in the repository root configures the build: it installs the workspace with pnpm, builds only `@pixel-lens/landing` and serves `apps/landing/dist`. Leave the Root Directory setting in the Vercel project empty, otherwise Vercel ignores this file. The build needs Node.js 22.
+
+To deploy from your machine:
+
+```bash
+vercel --prod
+```
 
 ## License
 

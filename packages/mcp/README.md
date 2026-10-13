@@ -1,6 +1,6 @@
 # @pixel-lens/mcp
 
-An [MCP](https://modelcontextprotocol.io) server that lets AI coding agents inspect, measure, audit, screenshot and live-edit the page open in your browser, through the [Pixel Lens](https://pixel-lens.dev) extension.
+An [MCP](https://modelcontextprotocol.io) server that lets AI coding agents inspect, measure, audit, screenshot and live-edit the page open in your browser, through the [Pixel Lens](https://pixel-lens.yefimov.tech) extension.
 
 ## Setup
 

@@ -78,6 +78,8 @@ The net edits are persisted in `chrome.storage.local` under `edits:<origin><path
 
 Astro with `output: "static"`: every page is rendered to HTML at build time. React is used only for the hero demo (`client:visible`), which imports `measureBetween` from `@pixel-lens/core`, the same code the extension runs.
 
+The site is hosted on Vercel at `pixel-lens.yefimov.tech`. Since the build runs from the monorepo root, the root `vercel.json` sets the install command, the build filter and the output directory (`apps/landing/dist`).
+
 ## Testing
 
 | Layer | Tooling | What is covered |

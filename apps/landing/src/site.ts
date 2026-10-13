@@ -3,7 +3,7 @@ export const SITE = {
   tagline: "Rulers, specs and live CSS editing for any web page.",
   description:
     "Pixel Lens is a free, open-source browser extension for designers and developers: rulers, spacing, CSS inspection, colors, fonts, contrast audits, live editing and an MCP bridge for AI coding agents.",
-  url: "https://pixel-lens.dev",
+  url: "https://pixel-lens.yefimov.tech",
   github: "https://github.com/valyefimov/pixel-lens",
   // Until the store listing is live, "Install" points at the install guide.
   install: "/docs#install",

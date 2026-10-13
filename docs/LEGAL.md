@@ -26,7 +26,7 @@ Pixel Lens reads and temporarily changes pages inside your own browser. Edits ar
 
 ## Privacy
 
-See the [privacy policy](https://pixel-lens.dev/privacy). In short: no analytics, no accounts, and nothing leaves your machine unless you turn on the agent bridge, which only talks to `127.0.0.1`.
+See the [privacy policy](https://pixel-lens.yefimov.tech/privacy). In short: no analytics, no accounts, and nothing leaves your machine unless you turn on the agent bridge, which only talks to `127.0.0.1`.
 
 ## Reporting a problem
 
