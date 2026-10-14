@@ -67,18 +67,22 @@ pnpm dev:ext      # run the extension with hot reload in a fresh browser profile
 pnpm dev:web      # run the website at http://localhost:4321
 ```
 
-### Load the extension manually
+### Install the extension
+
+Download `pixel-lens-1.0.0-chrome.zip` from the [latest release](https://github.com/valyefimov/pixel-lens/releases/latest) and unzip it. Open `chrome://extensions`, enable **Developer mode**, click **Load unpacked** and pick the unzipped folder.
+
+To build it yourself instead:
 
 ```bash
 pnpm --filter @pixel-lens/extension build
 ```
 
-Then open `chrome://extensions`, enable **Developer mode**, click **Load unpacked** and pick `apps/extension/.output/chrome-mv3`.
+and load `apps/extension/.output/chrome-mv3` the same way.
 
 ### Connect an AI agent
 
 ```bash
-pnpm --filter @pixel-lens/mcp build
+pnpm --filter @vefimov/pixel-lens build
 claude mcp add pixel-lens -- node "$(pwd)/packages/mcp/dist/cli.mjs"
 ```
 

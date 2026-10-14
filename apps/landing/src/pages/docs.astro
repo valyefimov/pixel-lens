@@ -72,8 +72,17 @@ const tools = [
 
       <h2 id="install">Install</h2>
       <p>
-        Pixel Lens is not in the Chrome Web Store yet, so for now you build it from source. You need Node.js 22+ and pnpm.
+        Pixel Lens is not in the Chrome Web Store yet. Until it is, install it from GitHub:
       </p>
+      <ol>
+        <li>Download <code>pixel-lens-1.0.0-chrome.zip</code> from the <a href={`${SITE.github}/releases/latest`}>latest release</a> and unzip it.</li>
+        <li>Open <code>chrome://extensions</code> (or <code>edge://extensions</code>, <code>brave://extensions</code>).</li>
+        <li>Turn on <strong>Developer mode</strong>.</li>
+        <li>Click <strong>Load unpacked</strong> and choose the unzipped folder.</li>
+        <li>Pin Pixel Lens to the toolbar.</li>
+      </ol>
+      <h3>Build from source</h3>
+      <p>You need Node.js 22+ and pnpm.</p>
       <pre><code>git clone {SITE.github}.git
 cd pixel-lens
 pnpm install
@@ -82,9 +91,8 @@ pnpm --filter @pixel-lens/extension build</code></pre>
         <li>Open <code>chrome://extensions</code> (or <code>edge://extensions</code>, <code>brave://extensions</code>).</li>
         <li>Turn on <strong>Developer mode</strong>.</li>
         <li>Click <strong>Load unpacked</strong> and choose <code>apps/extension/.output/chrome-mv3</code>.</li>
-        <li>Pin Pixel Lens to the toolbar.</li>
       </ol>
-      <p>For Firefox (experimental), run <code>pnpm --filter @pixel-lens/extension build:firefox</code> and load the add-on from <code>about:debugging</code>.</p>
+      <p>For Firefox (experimental), download <code>pixel-lens-1.0.0-firefox.zip</code> from the release, or run <code>pnpm --filter @pixel-lens/extension build:firefox</code>, and load it as a temporary add-on from <code>about:debugging</code>.</p>
 
       <h2 id="quick-start">Quick start</h2>
       <ol>
@@ -158,19 +166,19 @@ pnpm --filter @pixel-lens/extension build</code></pre>
       <h2 id="mcp">Agent bridge (MCP)</h2>
       <p>
         The bridge lets an MCP client such as Claude Code, Cursor or Windsurf work with the tab you have open. It has two parts: the
-        <code>@pixel-lens/mcp</code> server, which your agent starts, and the extension, which connects to it over a local WebSocket.
+        <code>@vefimov/pixel-lens</code> server, which your agent starts, and the extension, which connects to it over a local WebSocket.
       </p>
       <h3>1. Add the server to your client</h3>
       <pre><code># Claude Code
-claude mcp add pixel-lens -- npx -y @pixel-lens/mcp
+claude mcp add pixel-lens -- npx -y @vefimov/pixel-lens
 
 # Any client that reads an mcpServers config
 {`{
   "mcpServers": {
-    "pixel-lens": { "command": "npx", "args": ["-y", "@pixel-lens/mcp"] }
+    "pixel-lens": { "command": "npx", "args": ["-y", "@vefimov/pixel-lens"] }
   }
 }`}</code></pre>
-      <p>Until the package is on npm, point the client at your local build: <code>node packages/mcp/dist/cli.mjs</code> (run <code>pnpm --filter @pixel-lens/mcp build</code> first).</p>
+      <p>Until the package is on npm, point the client at your local build: <code>node packages/mcp/dist/cli.mjs</code> (run <code>pnpm --filter @vefimov/pixel-lens build</code> first).</p>
       <h3>2. Turn on the bridge in the extension</h3>
       <p>
         Open the Pixel Lens options page (right-click the icon → Options, or Settings → Open bridge settings), switch on

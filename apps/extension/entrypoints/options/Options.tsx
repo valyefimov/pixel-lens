@@ -49,7 +49,7 @@ export function Options() {
   };
 
   const config = JSON.stringify(
-    { mcpServers: { "pixel-lens": { command: "npx", args: ["-y", "@pixel-lens/mcp", "--port", String(port)] } } },
+    { mcpServers: { "pixel-lens": { command: "npx", args: ["-y", "@vefimov/pixel-lens", "--port", String(port)] } } },
     null,
     2,
   );
@@ -100,7 +100,7 @@ export function Options() {
         <h3>1. Add the server to your MCP client</h3>
         <pre>{config}</pre>
         <p className="muted">
-          Claude Code: <code>claude mcp add pixel-lens -- npx -y @pixel-lens/mcp</code>
+          Claude Code: <code>claude mcp add pixel-lens -- npx -y @vefimov/pixel-lens</code>
         </p>
         <h3>2. Turn the bridge on and ask your agent</h3>
         <p className="muted">“Measure the gap between the header logo and the nav, then make it 24px.”</p>

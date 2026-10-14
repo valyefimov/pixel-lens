@@ -17,7 +17,7 @@ Pixel Lens is a pnpm monorepo with two apps (the extension and the website) and 
 └───────────────────────────────────────────────────┼───────────────┘
                                                     │ ws://127.0.0.1:7331
                                          ┌──────────▼────────────┐
-                                         │ @pixel-lens/mcp       │
+                                         │ @vefimov/pixel-lens       │
                                          │  Bridge (WS server)   │
                                          │  McpServer (stdio)    │◀──▶ AI agent
                                          └───────────────────────┘
