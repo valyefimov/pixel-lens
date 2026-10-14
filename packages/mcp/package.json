@@ -1,0 +1,43 @@
+{
+  "name": "@pixel-lens/mcp",
+  "version": "0.1.0",
+  "description": "MCP server that gives AI coding agents eyes and hands in your browser through the Pixel Lens extension.",
+  "type": "module",
+  "license": "MIT",
+  "bin": {
+    "pixel-lens-mcp": "./dist/cli.mjs"
+  },
+  "files": [
+    "dist"
+  ],
+  "keywords": [
+    "mcp",
+    "model-context-protocol",
+    "browser",
+    "css",
+    "design",
+    "claude"
+  ],
+  "engines": {
+    "node": ">=20"
+  },
+  "scripts": {
+    "build": "tsdown",
+    "dev": "tsdown --watch",
+    "test": "vitest run",
+    "typecheck": "tsc --noEmit"
+  },
+  "dependencies": {
+    "@modelcontextprotocol/sdk": "^1.32.1",
+    "ws": "^8.22.0",
+    "zod": "^4.6.7"
+  },
+  "devDependencies": {
+    "@pixel-lens/core": "workspace:*",
+    "@types/node": "^22.20.5",
+    "@types/ws": "^8.18.2",
+    "tsdown": "^0.23.1",
+    "typescript": "5.9.3",
+    "vitest": "^4.1.11"
+  }
+}
