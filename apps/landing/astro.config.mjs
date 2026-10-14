@@ -6,7 +6,7 @@ import tailwindcss from "@tailwindcss/vite";
 
 // https://astro.build/config
 export default defineConfig({
-  site: "https://pixel-lens.dev",
+  site: "https://pixel-lens.yefimov.tech",
   // Every page is rendered to HTML at build time; React only hydrates the interactive islands.
   output: "static",
   integrations: [react(), sitemap()],
