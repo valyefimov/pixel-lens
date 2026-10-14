@@ -170,7 +170,7 @@ function CardBody({ el }: { el: Element }) {
   );
 }
 
-/** Floating inspector that follows the hovered element, or sticks to the selected one. */
+/** Hover inspector that follows the hovered element, or sticks to the selected one. */
 export function InspectorCard() {
   const tool = useOverlay((s) => s.tool);
   const hovered = useOverlay((s) => s.hovered);

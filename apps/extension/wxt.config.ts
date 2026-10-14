@@ -8,7 +8,7 @@ export default defineConfig({
   manifest: {
     name: "Pixel Lens",
     description:
-      "Measure, inspect and edit any web page. Rulers, spacing, CSS, colors, fonts, contrast audits and an MCP bridge for AI agents.",
+      "Rulers, spacing, CSS specs, colors, fonts, contrast audits and live editing for any web page, plus an MCP bridge for AI agents.",
     // activeTab + scripting: the extension only touches a page after you invoke it.
     // Blanket host access is optional and only requested for the Agent Bridge.
     permissions: ["activeTab", "scripting", "storage", "alarms"],

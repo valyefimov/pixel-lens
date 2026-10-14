@@ -14,7 +14,7 @@ export const PANELS: { id: Panel; icon: IconName; label: string; key: string }[]
   { id: "fonts", icon: "fonts", label: "Typography", key: "T" },
   { id: "assets", icon: "assets", label: "Assets", key: "A" },
   { id: "audit", icon: "audit", label: "Audit", key: "U" },
-  { id: "page", icon: "page", label: "Page insights", key: "P" },
+  { id: "page", icon: "page", label: "Page report", key: "P" },
   { id: "edits", icon: "edits", label: "Changes", key: "D" },
 ];
 

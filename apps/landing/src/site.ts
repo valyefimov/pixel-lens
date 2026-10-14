@@ -1,6 +1,6 @@
 export const SITE = {
   name: "Pixel Lens",
-  tagline: "Measure, inspect and edit any web page.",
+  tagline: "Rulers, specs and live CSS editing for any web page.",
   description:
     "Pixel Lens is a free, open-source browser extension for designers and developers: rulers, spacing, CSS inspection, colors, fonts, contrast audits, live editing and an MCP bridge for AI coding agents.",
   url: "https://pixel-lens.dev",
