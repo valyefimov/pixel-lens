@@ -22,27 +22,28 @@
 
 | Tool | What it does | Key |
 | --- | --- | --- |
-| **Inspect** | Floating card with size, box model, typography, colors, WCAG contrast, layout and Tailwind classes. Pin cards to compare. | `I` |
-| **Measure** | Edge-to-edge distances between the selection and the hovered element. Hold `Alt` in any tool. | `M` |
-| **Ruler & guides** | Drag to measure an area with snapping; pull guides from the rulers. | `R` |
-| **Live edit** | Edit CSS and text in place. Every change is tracked, persisted per page and exported as a diff, CSS or an agent prompt. | `E` |
-| **Design overlay** | Paste or drop a mockup over the page, align it, and use difference blending to find every off-by-one. | `O` |
-| **Colors** | Eyedropper, page palette, gradients; HEX, RGB, HSL and OKLCH; export as CSS tokens. | `C` `K` |
-| **Typography** | All font families and their size/weight/line-height combinations. | `T` |
-| **Assets** | Images, inline SVGs, background images and videos, ready to download. | `A` |
-| **Audit** | WCAG AA/AAA contrast failures and SEO basics, with one-click jump to the element. | `U` |
-| **Page insights** | Page weight by resource type, detected technologies, social preview. | `P` |
-| **Grid & X-ray** | Configurable column grid and outlines on every element. | `G` `X` |
-| **Agent bridge** | Local MCP server so Claude Code, Cursor or Windsurf can inspect, measure, edit and screenshot the active tab. | — |
+| Inspect | Floating card with size, box model, typography, colors, WCAG contrast, layout and Tailwind classes. Pin cards to compare. | `I` |
+| Measure | Edge-to-edge distances between the selection and the hovered element. Hold `Alt` in any tool. | `M` |
+| Ruler & guides | Drag to measure an area with snapping; pull guides from the rulers. | `R` |
+| Live edit | Edit CSS and text in place. Every change is tracked, persisted per page and exported as a diff, CSS or an agent prompt. | `E` |
+| Design overlay | Paste or drop a mockup over the page, align it, and use difference blending to find every off-by-one. | `O` |
+| Colors | Eyedropper, page palette, gradients; HEX, RGB, HSL and OKLCH; export as CSS tokens. | `C` `K` |
+| Typography | All font families and their size/weight/line-height combinations. | `T` |
+| Assets | Images, inline SVGs, background images and videos, ready to download. | `A` |
+| Audit | WCAG AA/AAA contrast failures and SEO basics, with one-click jump to the element. | `U` |
+| Page insights | Page weight by resource type, detected technologies, social preview. | `P` |
+| Grid & X-ray | Configurable column grid and outlines on every element. | `G` `X` |
+| Agent bridge | Local MCP server so Claude Code, Cursor or Windsurf can inspect, measure, edit and screenshot the active tab. | |
 
 Arrow keys walk the DOM tree (parent, child, siblings), `Space` pins, `Esc` backs out, `?` lists every shortcut.
 
 ### Why another inspector?
 
-- **Free and MIT-licensed.** Every feature, no license keys.
-- **Minimal permissions.** Runs only on the tab you invoke it on (`activeTab`). Host access is optional and only for the agent bridge.
-- **No tracking.** No analytics, no accounts, no remote code.
-- **Built for working with AI agents.** Live edits export as a ready-to-paste prompt, and the MCP server lets the agent do the measuring itself.
+Every feature is free under the MIT license, with no license keys or trial.
+
+The extension only runs on the tab where you invoke it (`activeTab`). It asks for access to all sites only if you turn on the agent bridge. There are no analytics, accounts or remotely loaded code.
+
+Live edits export as a prompt you can paste into a coding agent, and the MCP server lets the agent take measurements itself.
 
 ## Repository layout
 
