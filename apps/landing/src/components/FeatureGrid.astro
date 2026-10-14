@@ -1,0 +1,155 @@
+---
+/** Bento grid of the extension's tools. Every item here exists in the shipped extension. */
+const features = [
+  {
+    title: "Alt-to-measure",
+    body: "Select an element, hold Alt, hover another. Edge-to-edge distances appear instantly, the same way Figma does it.",
+    key: "M",
+    span: "md:col-span-2",
+    art: "measure",
+  },
+  {
+    title: "Floating inspector",
+    body: "Size, box model, typography, colors with WCAG contrast, layout and Tailwind classes for whatever is under your cursor.",
+    key: "I",
+    span: "",
+    art: "inspect",
+  },
+  {
+    title: "Rulers & guides",
+    body: "Drag out a measurement that snaps to element edges. Pull guides from the rulers and read the gaps between them.",
+    key: "R",
+    span: "",
+    art: "ruler",
+  },
+  {
+    title: "Design overlay",
+    body: "Paste a Figma export over the live page. Switch on difference blending and every misaligned pixel lights up.",
+    key: "O",
+    span: "md:col-span-2",
+    art: "overlay",
+  },
+  {
+    title: "Live editing with a diff",
+    body: "Change any CSS property, rewrite text in place, hide or duplicate elements. Every change is tracked, persisted per page and exported as a diff.",
+    key: "E",
+    span: "md:col-span-2",
+    art: "diff",
+  },
+  {
+    title: "Colors & eyedropper",
+    body: "Sample any pixel, see HEX, RGB, HSL and OKLCH, extract the page palette and gradients, export them as CSS tokens.",
+    key: "C",
+    span: "",
+    art: "colors",
+  },
+  {
+    title: "Typography",
+    body: "Every font family, size, weight and line height in use, grouped and ready to copy as a type scale.",
+    key: "T",
+    span: "",
+    art: "type",
+  },
+  {
+    title: "Audits",
+    body: "WCAG AA/AAA contrast failures, missing alt text, heading order, meta and Open Graph checks. One click jumps to the culprit.",
+    key: "U",
+    span: "",
+    art: "audit",
+  },
+  {
+    title: "Assets & page insights",
+    body: "Download images and inline SVGs, see page weight by resource type, detected frameworks and the social preview card.",
+    key: "A",
+    span: "",
+    art: "assets",
+  },
+];
+---
+
+<div class="grid gap-4 md:grid-cols-3">
+  {
+    features.map((f) => (
+      <article class:list={["card group relative flex flex-col overflow-hidden p-6 transition hover:border-white/15", f.span]}>
+        <div class="mb-6 h-28 overflow-hidden rounded-xl border border-white/[0.06] bg-ink-950/60" aria-hidden="true">
+          {f.art === "measure" && (
+            <div class="relative flex h-full items-center justify-center gap-14">
+              <div class="h-12 w-24 rounded-lg border-[1.5px] border-lens-500 bg-lens-500/10" />
+              <div class="h-12 w-24 rounded-lg border border-dashed border-measure/80" />
+              <div class="absolute top-1/2 left-1/2 h-px w-14 -translate-x-1/2 bg-measure" />
+              <span class="dim-tag absolute top-[calc(50%-24px)] left-1/2 -translate-x-1/2">56</span>
+            </div>
+          )}
+          {f.art === "inspect" && (
+            <div class="grid h-full place-items-center">
+              <div class="relative rounded-md bg-[rgba(246,178,107,0.25)] p-3">
+                <div class="rounded bg-[rgba(147,196,125,0.35)] p-3">
+                  <div class="h-6 w-20 rounded bg-[rgba(111,168,220,0.45)]" />
+                </div>
+                <span class="absolute -top-5 left-0 rounded bg-lens-500 px-1.5 font-mono text-[10px] text-white">button 128×48</span>
+              </div>
+            </div>
+          )}
+          {f.art === "ruler" && (
+            <div class="relative h-full">
+              <div class="absolute inset-x-0 top-0 h-4 border-b border-white/10 bg-[repeating-linear-gradient(90deg,rgba(255,255,255,0.35)_0_1px,transparent_1px_10px)] bg-[length:10px_6px] bg-bottom bg-repeat-x" />
+              <div class="absolute top-0 bottom-0 left-[30%] w-px bg-guide" />
+              <div class="absolute top-0 bottom-0 left-[70%] w-px bg-guide" />
+              <span class="absolute top-8 left-1/2 -translate-x-1/2 rounded bg-guide px-1.5 font-mono text-[10px] font-semibold text-white">240</span>
+              <div class="absolute bottom-3 left-[38%] h-8 w-[24%] border border-measure bg-measure/10" />
+            </div>
+          )}
+          {f.art === "overlay" && (
+            <div class="relative grid h-full place-items-center">
+              <div class="absolute h-14 w-48 rounded-lg bg-ink-100" />
+              <div class="absolute h-14 w-48 translate-x-1.5 translate-y-1 rounded-lg bg-ink-100 mix-blend-difference" />
+              <span class="absolute right-4 bottom-3 font-mono text-[10px] text-ink-300">difference · 50%</span>
+            </div>
+          )}
+          {f.art === "diff" && (
+            <pre class="h-full p-4 font-mono text-[11px] leading-5"><span class="text-ink-400">  .pricing-card {"{"}</span>
+<span class="text-[#ff8a96]">-   padding: 20px;</span>
+<span class="text-[#6ee7a6]">+   padding: 24px;</span>
+<span class="text-[#6ee7a6]">+   border-radius: 16px;</span></pre>
+          )}
+          {f.art === "colors" && (
+            <div class="flex h-full items-center justify-center gap-2">
+              {["#7C5CFF", "#FF2D78", "#00B3FF", "#2FD27A", "#F4F4F7"].map((c) => (
+                <span class="size-9 rounded-lg ring-1 ring-white/10" style={{ background: c }} />
+              ))}
+            </div>
+          )}
+          {f.art === "type" && (
+            <div class="flex h-full items-end gap-3 px-5 pb-4">
+              <span class="text-5xl leading-none font-bold text-white">Aa</span>
+              <span class="font-mono text-[11px] leading-5 text-ink-300">48 / 56 · 700<br />Inter Variable</span>
+            </div>
+          )}
+          {f.art === "audit" && (
+            <div class="flex h-full flex-col justify-center gap-2 px-5 font-mono text-[11px]">
+              <span class="flex items-center gap-2"><span class="size-2 rounded-full bg-[#ff4d5e]" /> 2.31 : 1 · Fail</span>
+              <span class="flex items-center gap-2"><span class="size-2 rounded-full bg-[#ffb020]" /> Heading order</span>
+              <span class="flex items-center gap-2"><span class="size-2 rounded-full bg-ok" /> Single H1</span>
+            </div>
+          )}
+          {f.art === "assets" && (
+            <div class="flex h-full items-center gap-3 px-5">
+              <div class="flex h-16 flex-1 overflow-hidden rounded">
+                <span class="w-[42%] bg-[#ffb020]" />
+                <span class="w-[30%] bg-ok" />
+                <span class="w-[14%] bg-guide" />
+                <span class="w-[14%] bg-measure" />
+              </div>
+              <span class="font-mono text-[11px] text-ink-300">1.84 MB</span>
+            </div>
+          )}
+        </div>
+        <div class="flex items-start justify-between gap-4">
+          <h3 class="text-base font-semibold text-white">{f.title}</h3>
+          <kbd class="kbd">{f.key}</kbd>
+        </div>
+        <p class="mt-2 text-sm leading-6 text-ink-300">{f.body}</p>
+      </article>
+    ))
+  }
+</div>
