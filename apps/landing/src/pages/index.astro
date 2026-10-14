@@ -1,0 +1,234 @@
+---
+import Base from "../layouts/Base.astro";
+import AgentTerminal from "../components/AgentTerminal.astro";
+import FeatureGrid from "../components/FeatureGrid.astro";
+import InspectorDemo from "../components/InspectorDemo.tsx";
+import { SITE } from "../site";
+
+const steps = [
+  {
+    n: "01",
+    title: "Click the icon",
+    body: "Or press Alt + Shift + P. Pixel Lens injects itself into that one tab, inside an isolated shadow root. It never runs on pages you didn't ask it to.",
+  },
+  {
+    n: "02",
+    title: "Hover, click, hold Alt",
+    body: "Hover to inspect, click to select, hold Alt to measure. Arrow keys walk the DOM tree. Every tool has a single-key shortcut.",
+  },
+  {
+    n: "03",
+    title: "Copy what you need",
+    body: "CSS blocks, Tailwind classes, colors in four formats, type scales, a contrast report, or the full diff of your live edits.",
+  },
+];
+
+const differences = [
+  ["Free and open source (MIT)", "No license keys, no trial timers, read every line."],
+  ["Runs only where you invoke it", "activeTab permission instead of access to every site you visit."],
+  ["Design overlay with difference blending", "Compare a mockup to the build pixel by pixel, not by eye."],
+  ["Keyboard-first", "Single-key tools, Alt-to-measure, arrow-key DOM navigation."],
+  ["Edits that survive a reload", "Live CSS changes are saved per page and exported as a diff or an agent prompt."],
+  ["Agent bridge included", "A local MCP server, not a cloud service. Nothing leaves 127.0.0.1."],
+];
+
+const faqs = [
+  {
+    q: "Is it really free?",
+    a: "Yes. Every feature, including live editing and the MCP bridge, is free and MIT-licensed. There is no paid tier.",
+  },
+  {
+    q: "What does the extension have access to?",
+    a: "Only the tab where you click its icon (Chrome's activeTab permission). It asks for access to all sites only if you turn on the Agent Bridge, so an agent can read whichever tab is active.",
+  },
+  {
+    q: "Does it send anything to a server?",
+    a: "No. There are no analytics and no accounts. The Agent Bridge talks to an MCP server running on your own machine over 127.0.0.1.",
+  },
+  {
+    q: "Which browsers are supported?",
+    a: "Chrome, Edge, Brave, Arc and other Chromium browsers. An experimental Firefox build comes from the same codebase; the eyedropper is Chromium-only.",
+  },
+  {
+    q: "Will it break the page I'm inspecting?",
+    a: "The UI lives in a shadow root, so page styles can't leak in and ours can't leak out. While a tool is active, clicks select elements instead of following links. Press Esc to get the page back.",
+  },
+];
+---
+
+<Base>
+  <!-- Hero -->
+  <section class="relative overflow-hidden">
+    <div class="bg-grid absolute inset-0 [mask-image:radial-gradient(70%_60%_at_50%_30%,black,transparent)]"></div>
+    <div class="glow absolute inset-0"></div>
+    <div class="relative mx-auto max-w-6xl px-4 pt-20 pb-16 sm:px-6 sm:pt-28">
+      <div class="mx-auto max-w-3xl text-center">
+        <p class="eyebrow mb-5">Browser extension · Free & open source</p>
+        <h1 class="text-[clamp(2.4rem,6vw,4.4rem)] leading-[1.02] font-semibold tracking-[-0.035em] text-balance text-white">
+          Every pixel, <span class="relative whitespace-nowrap text-lens-300">accounted&nbsp;for<span class="dim-tag absolute -top-3 -right-3 rotate-3 text-[11px] leading-4 tracking-normal">8px</span></span>
+        </h1>
+        <p class="mx-auto mt-6 max-w-xl text-lg leading-8 text-pretty text-ink-300">
+          Measure distances, inspect real CSS, compare against your design and edit the page live. Then hand the diff to your AI agent.
+        </p>
+        <div class="mt-9 flex flex-wrap items-center justify-center gap-3">
+          <a href={SITE.install} class="btn-primary">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M12 3v12m0 0 5-5m-5 5-5-5M5 21h14"></path></svg>
+            Install Pixel Lens
+          </a>
+          <a href="#how" class="btn-ghost">See how it works</a>
+        </div>
+        <p class="mt-5 font-mono text-xs text-ink-400">
+          Chrome · Edge · Brave · Arc &nbsp;·&nbsp; toggle with <kbd class="kbd">Alt</kbd> <kbd class="kbd">Shift</kbd> <kbd class="kbd">P</kbd>
+        </p>
+      </div>
+
+      <div class="mx-auto mt-16 max-w-5xl">
+        <InspectorDemo client:visible />
+      </div>
+    </div>
+  </section>
+
+  <!-- Features -->
+  <section id="features" class="mx-auto max-w-6xl px-4 py-24 sm:px-6">
+    <div class="mb-12 max-w-2xl">
+      <p class="eyebrow mb-3">Features</p>
+      <h2 class="text-3xl font-semibold tracking-tight text-white sm:text-4xl">One extension instead of eight.</h2>
+      <p class="mt-4 text-ink-300">
+        Ruler, CSS inspector, color picker, font identifier, asset grabber, accessibility checker, overlay tool and live editor. Same
+        shortcuts, same panel, every page.
+      </p>
+    </div>
+    <FeatureGrid />
+  </section>
+
+  <!-- How it works -->
+  <section id="how" class="border-y border-white/[0.06] bg-ink-900/40">
+    <div class="mx-auto max-w-6xl px-4 py-24 sm:px-6">
+      <div class="mb-14 max-w-2xl">
+        <p class="eyebrow mb-3">How it works</p>
+        <h2 class="text-3xl font-semibold tracking-tight text-white sm:text-4xl">Three steps, zero setup.</h2>
+      </div>
+      <ol class="grid gap-4 md:grid-cols-3">
+        {
+          steps.map((s) => (
+            <li class="card p-6">
+              <span class="font-mono text-sm text-lens-400">{s.n}</span>
+              <h3 class="mt-4 text-lg font-semibold text-white">{s.title}</h3>
+              <p class="mt-2 text-sm leading-6 text-ink-300">{s.body}</p>
+            </li>
+          ))
+        }
+      </ol>
+
+      <!-- Architecture -->
+      <div class="card mt-10 p-6 sm:p-8">
+        <h3 class="text-lg font-semibold text-white">Under the hood</h3>
+        <p class="mt-2 max-w-2xl text-sm leading-6 text-ink-300">
+          A thin background worker, an overlay that lives in a shadow root inside the page, and a shared core that does the math. The same
+          core powers the demo above.
+        </p>
+        <div class="mt-8 grid items-stretch gap-3 font-mono text-[12px] md:grid-cols-[1fr_auto_1fr_auto_1fr]">
+          <div class="rounded-xl border border-white/[0.08] bg-ink-950/60 p-4">
+            <p class="text-ink-400">Your browser tab</p>
+            <p class="mt-2 text-white">Overlay (shadow DOM)</p>
+            <p class="mt-1 text-ink-300">inspector · rulers · panels</p>
+            <p class="mt-1 text-ink-300">live edit stylesheet</p>
+          </div>
+          <div class="grid place-items-center text-ink-400" aria-hidden="true">⇄</div>
+          <div class="rounded-xl border border-lens-500/40 bg-lens-500/[0.07] p-4">
+            <p class="text-ink-400">Extension worker</p>
+            <p class="mt-2 text-white">activeTab injection</p>
+            <p class="mt-1 text-ink-300">screenshots · settings</p>
+            <p class="mt-1 text-ink-300">WebSocket client</p>
+          </div>
+          <div class="grid place-items-center text-ink-400" aria-hidden="true">⇄</div>
+          <div class="rounded-xl border border-white/[0.08] bg-ink-950/60 p-4">
+            <p class="text-ink-400">Optional · your machine</p>
+            <p class="mt-2 text-white">@pixel-lens/mcp</p>
+            <p class="mt-1 text-ink-300">ws://127.0.0.1:7331</p>
+            <p class="mt-1 text-ink-300">stdio ⇄ your agent</p>
+          </div>
+        </div>
+        <a href="/docs#architecture" class="mt-6 inline-block text-sm text-lens-300 hover:text-white">Read the architecture notes →</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Agents -->
+  <section id="agents" class="mx-auto max-w-6xl px-4 py-24 sm:px-6">
+    <div class="grid items-center gap-12 lg:grid-cols-[1fr_1.15fr]">
+      <div>
+        <p class="eyebrow mb-3">MCP · AI agents</p>
+        <h2 class="text-3xl font-semibold tracking-tight text-white sm:text-4xl">Give your agent a ruler.</h2>
+        <p class="mt-4 leading-7 text-ink-300">
+          Coding agents are great at CSS and terrible at seeing. The Pixel Lens MCP server lets Claude Code, Cursor, Windsurf or any MCP
+          client inspect, measure, audit, screenshot and live-edit the tab you're looking at, then port the diff into your code.
+        </p>
+        <pre class="mt-6 overflow-x-auto rounded-xl border border-white/[0.07] bg-ink-900 p-4 font-mono text-[13px] text-ink-100"><span class="text-ink-400">$</span> claude mcp add pixel-lens -- npx -y @pixel-lens/mcp</pre>
+        <ul class="mt-6 grid grid-cols-2 gap-2 font-mono text-[12px] text-ink-200">
+          {
+            ["inspect_element", "query_elements", "measure_distance", "audit_contrast", "apply_styles", "set_text", "get_changes", "screenshot"].map((t) => (
+              <li class="flex items-center gap-2">
+                <span class="size-1.5 rounded-full bg-lens-400" />
+                {t}
+              </li>
+            ))
+          }
+        </ul>
+        <a href="/docs#mcp" class="mt-6 inline-block text-sm text-lens-300 hover:text-white">Set up the agent bridge →</a>
+      </div>
+      <AgentTerminal />
+    </div>
+  </section>
+
+  <!-- Why -->
+  <section class="border-y border-white/[0.06] bg-ink-900/40">
+    <div class="mx-auto max-w-6xl px-4 py-24 sm:px-6">
+      <div class="mb-12 max-w-2xl">
+        <p class="eyebrow mb-3">Why Pixel Lens</p>
+        <h2 class="text-3xl font-semibold tracking-tight text-white sm:text-4xl">Built the way we wanted our tools to work.</h2>
+      </div>
+      <dl class="grid gap-x-10 gap-y-8 sm:grid-cols-2 lg:grid-cols-3">
+        {
+          differences.map(([t, d]) => (
+            <div class="border-l border-lens-500/50 pl-5">
+              <dt class="font-semibold text-white">{t}</dt>
+              <dd class="mt-1.5 text-sm leading-6 text-ink-300">{d}</dd>
+            </div>
+          ))
+        }
+      </dl>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section class="mx-auto max-w-3xl px-4 py-24 sm:px-6">
+    <h2 class="mb-10 text-center text-3xl font-semibold tracking-tight text-white">Questions</h2>
+    <div class="divide-y divide-white/[0.07] border-y border-white/[0.07]">
+      {
+        faqs.map((f) => (
+          <details class="group py-5">
+            <summary class="flex cursor-pointer list-none items-center justify-between gap-6 font-medium text-white [&::-webkit-details-marker]:hidden">
+              {f.q}
+              <span class="text-ink-400 transition group-open:rotate-45" aria-hidden="true">+</span>
+            </summary>
+            <p class="mt-3 text-sm leading-6 text-ink-300">{f.a}</p>
+          </details>
+        ))
+      }
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="relative overflow-hidden border-t border-white/[0.06]">
+    <div class="glow absolute inset-0 rotate-180"></div>
+    <div class="relative mx-auto max-w-3xl px-4 py-24 text-center sm:px-6">
+      <h2 class="text-3xl font-semibold tracking-tight text-balance text-white sm:text-5xl">Stop eyeballing. Start measuring.</h2>
+      <p class="mt-4 text-ink-300">Free forever. No account. Works on any page.</p>
+      <div class="mt-8 flex flex-wrap justify-center gap-3">
+        <a href={SITE.install} class="btn-primary">Install Pixel Lens</a>
+        <a href={SITE.github} class="btn-ghost">Star on GitHub</a>
+      </div>
+    </div>
+  </section>
+</Base>
