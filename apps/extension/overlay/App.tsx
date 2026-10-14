@@ -54,7 +54,9 @@ function useGlobalEvents() {
     };
 
     const onMove = (e: PointerEvent) => {
-      if (!elementTool() || fromOverlay(e)) return;
+      if (!elementTool()) return;
+      // Moving onto the dock or a panel hides the hover card so it doesn't cover the page.
+      if (fromOverlay(e)) return store.set({ hovered: null });
       store.set({ hovered: elementAt(e.clientX, e.clientY), altDown: e.altKey, shiftDown: e.shiftKey });
     };
 
