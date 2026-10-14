@@ -105,12 +105,17 @@ const path = Astro.url.pathname;
           <ul class="space-y-2 text-sm text-ink-200">
             <li><a class="hover:text-white" href={SITE.github}>GitHub</a></li>
             <li><a class="hover:text-white" href="/privacy">Privacy</a></li>
+            <li><a class="hover:text-white" href="/legal">Terms & legal</a></li>
             <li><a class="hover:text-white" href={`${SITE.github}/blob/main/LICENSE`}>MIT License</a></li>
           </ul>
         </div>
       </div>
       <div class="mx-auto max-w-6xl px-4 pb-10 font-mono text-xs text-ink-400 sm:px-6">
-        © {new Date().getFullYear()} Valentyn Yefimov · Built with Astro & WXT
+        © {new Date().getFullYear()} Valentyn Yefimov · MIT license · Built with Astro & WXT
+        <p class="mt-2 max-w-3xl font-sans leading-5">
+          Chrome, Edge, Firefox, Brave, Arc, Figma, Claude, Cursor, Windsurf and Tailwind CSS are trademarks of their respective owners. Pixel
+          Lens is an independent open-source project and is not affiliated with or endorsed by them.
+        </p>
       </div>
     </footer>
   </body>
