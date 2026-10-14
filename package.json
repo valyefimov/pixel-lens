@@ -1,0 +1,19 @@
+{
+  "name": "pixel-lens",
+  "private": true,
+  "type": "module",
+  "packageManager": "pnpm@10.33.3",
+  "engines": {
+    "node": ">=22.12"
+  },
+  "scripts": {
+    "dev:ext": "pnpm --filter @pixel-lens/extension dev",
+    "dev:web": "pnpm --filter @pixel-lens/landing dev",
+    "build": "pnpm -r build",
+    "test": "pnpm -r --if-present test",
+    "typecheck": "pnpm -r --if-present typecheck"
+  },
+  "devDependencies": {
+    "typescript": "5.9.3"
+  }
+}
