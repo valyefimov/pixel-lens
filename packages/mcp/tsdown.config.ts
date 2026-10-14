@@ -6,7 +6,7 @@ export default defineConfig({
   platform: "node",
   target: "node20",
   // Bundle the workspace core package so the published CLI has no private deps.
-  noExternal: ["@pixel-lens/core"],
+  deps: { alwaysBundle: ["@pixel-lens/core"] },
   banner: { js: "#!/usr/bin/env node" },
   clean: true,
 });

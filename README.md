@@ -82,8 +82,7 @@ and load `apps/extension/.output/chrome-mv3` the same way.
 ### Connect an AI agent
 
 ```bash
-pnpm --filter @vefimov/pixel-lens build
-claude mcp add pixel-lens -- node "$(pwd)/packages/mcp/dist/cli.mjs"
+claude mcp add pixel-lens -- npx -y @vefimov/pixel-lens
 ```
 
 Open the extension options, switch on **Agent Bridge** and grant site access. See [packages/mcp](packages/mcp/README.md) for the full tool list.
