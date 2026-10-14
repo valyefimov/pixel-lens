@@ -27,6 +27,7 @@ The first E2E run may ask you to install Playwright's Chromium: `pnpm --filter @
 - The extension makes no network calls. The only socket is the opt-in bridge to `127.0.0.1`.
 - Give new tools a single-key shortcut and list them in the help panel and the docs.
 - Follow the surrounding code: explicit imports, small components, and comments that explain why.
+- Only submit work you wrote yourself or have the right to license under MIT. Do not copy code, text, icons or screenshots from other extensions or their websites. See [docs/LEGAL.md](docs/LEGAL.md).
 
 ## Commit messages
 
