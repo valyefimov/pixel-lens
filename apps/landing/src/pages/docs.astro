@@ -67,13 +67,12 @@ const tools = [
       <p class="eyebrow">Documentation</p>
       <h1 class="mt-3 text-4xl font-semibold tracking-tight text-white">Pixel Lens docs</h1>
       <p class="text-lg text-ink-300">
-        Everything you need to install the extension, use each tool, and let an AI agent work with the page you're looking at.
+        How to install the extension, what each tool does, and how to connect an AI agent to the page you have open.
       </p>
 
       <h2 id="install">Install</h2>
       <p>
-        The Chrome Web Store listing is on its way. Until then, build it from source; it takes about a minute and you need Node.js 22+
-        and pnpm.
+        Pixel Lens is not in the Chrome Web Store yet, so for now you build it from source. You need Node.js 22+ and pnpm.
       </p>
       <pre><code>git clone {SITE.github}.git
 cd pixel-lens
@@ -178,7 +177,7 @@ claude mcp add pixel-lens -- npx -y @pixel-lens/mcp
         <strong>Agent Bridge</strong> and grant site access. The status dot turns green once the server is running.
       </p>
       <h3>3. Ask your agent</h3>
-      <p>“Measure the gap between the logo and the nav, make it 24px, screenshot the header and apply the change to the code.”</p>
+      <p>"Measure the gap between the logo and the nav, make it 24px, screenshot the header and apply the change to the code."</p>
       <h3>Tools</h3>
       <table>
         <thead><tr><th>Tool</th><th>What it does</th></tr></thead>
@@ -214,24 +213,24 @@ packages/core    geometry, color, Tailwind mapping, CSS diff, bridge protocol
 packages/mcp     MCP server + WebSocket bridge</code></pre>
       <ul>
         <li>
-          <strong>Background worker</strong> (<code>entrypoints/background.ts</code>) handles the toolbar click and shortcut, injects the
+          The background worker (<code>entrypoints/background.ts</code>) handles the toolbar click and shortcut, injects the
           overlay with <code>scripting.executeScript</code>, captures screenshots and runs the WebSocket client for the bridge.
         </li>
         <li>
-          <strong>Overlay</strong> (<code>entrypoints/overlay.content</code>) is a runtime-registered content script. Its React UI renders
+          The overlay (<code>entrypoints/overlay.content</code>) is a runtime-registered content script. Its React UI renders
           into a shadow root so page CSS and overlay CSS never mix. A tiny external store drives the layers (SVG highlights, rulers, grid),
           the inspector card, the dock and the panels.
         </li>
         <li>
-          <strong>Design overlay</strong> renders into a separate light-DOM host: the overlay host is a stacking context, which would
+          The design overlay renders into a separate light-DOM host: the overlay host is a stacking context, which would
           isolate <code>mix-blend-mode</code> from the page.
         </li>
         <li>
-          <strong>Live edits</strong> are written as <code>selector {"{"} prop: value !important {"}"}</code> rules into one
+          Live edits are written as <code>selector {"{"} prop: value !important {"}"}</code> rules into one
           <code>&lt;style&gt;</code> element instead of inline styles, so reverting is trivial and edits behave like real stylesheet changes.
         </li>
         <li>
-          <strong>Core</strong> is framework-free and fully unit-tested. The landing page demo imports the same measurement code as the
+          The core package has no framework dependencies and is covered by unit tests. The landing page demo imports the same measurement code as the
           extension.
         </li>
       </ul>
