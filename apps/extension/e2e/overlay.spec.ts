@@ -34,6 +34,11 @@ test.afterAll(async () => {
 
 /** Opens the fixture and injects the overlay the same way a toolbar click would. */
 async function openWithOverlay(): Promise<Page> {
+  // Live edits persist per page in extension storage; drop them so tests don't inherit each other's styles.
+  await worker.evaluate(async () => {
+    const all = await chrome.storage.local.get(null);
+    await chrome.storage.local.remove(Object.keys(all).filter((k) => k.startsWith("local:edits:")));
+  });
   const page = await context.newPage();
   await page.goto(baseURL);
   await worker.evaluate(async (url) => {
@@ -125,12 +130,15 @@ test("ruler draws a measured rectangle", async () => {
   await expect(shadow(page, ".pl-label text").filter({ hasText: "100 × 50" })).toBeVisible();
 
   // Dragging out of the left ruler creates vertical guides; the gap between them is labelled.
+  // Alt disables snapping, so font metrics on the runner can't pull a guide onto a nearby element edge.
+  await page.keyboard.down("Alt");
   for (const x of [600, 720]) {
     await page.mouse.move(8, 300);
     await page.mouse.down();
     await page.mouse.move(x, 300, { steps: 4 });
     await page.mouse.up();
   }
+  await page.keyboard.up("Alt");
   await expect(shadow(page, ".pl-label text").filter({ hasText: /^120$/ })).toBeVisible();
   await page.close();
 });
