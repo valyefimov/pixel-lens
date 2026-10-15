@@ -1,9 +1,10 @@
 import { McpServer } from "@modelcontextprotocol/sdk/server/mcp.js";
 import { z } from "zod";
 import type { ElementSnapshot } from "@pixel-lens/core";
+import pkg from "../package.json" with { type: "json" };
 import type { Bridge } from "./bridge";
 
-const VERSION = "0.1.0";
+const VERSION = pkg.version;
 
 type ToolResult = { content: ({ type: "text"; text: string } | { type: "image"; data: string; mimeType: string })[]; isError?: boolean };
 

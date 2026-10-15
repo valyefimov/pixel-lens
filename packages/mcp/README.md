@@ -1,4 +1,4 @@
-# @pixel-lens/mcp
+# @vefimov/pixel-lens
 
 An [MCP](https://modelcontextprotocol.io) server that lets AI coding agents inspect, measure, audit, screenshot and live-edit the page open in your browser, through the [Pixel Lens](https://pixel-lens.yefimov.tech) extension.
 
@@ -9,13 +9,13 @@ An [MCP](https://modelcontextprotocol.io) server that lets AI coding agents insp
 
    ```bash
    # Claude Code
-   claude mcp add pixel-lens -- npx -y @pixel-lens/mcp
+   claude mcp add pixel-lens -- npx -y @vefimov/pixel-lens
    ```
 
    ```json
    {
      "mcpServers": {
-       "pixel-lens": { "command": "npx", "args": ["-y", "@pixel-lens/mcp"] }
+       "pixel-lens": { "command": "npx", "args": ["-y", "@vefimov/pixel-lens"] }
      }
    }
    ```

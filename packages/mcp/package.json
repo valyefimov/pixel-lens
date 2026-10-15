@@ -1,15 +1,7 @@
 {
-  "name": "@pixel-lens/mcp",
-  "version": "0.1.0",
+  "name": "@vefimov/pixel-lens",
+  "version": "1.0.0",
   "description": "MCP server that gives AI coding agents eyes and hands in your browser through the Pixel Lens extension.",
-  "type": "module",
-  "license": "MIT",
-  "bin": {
-    "pixel-lens-mcp": "./dist/cli.mjs"
-  },
-  "files": [
-    "dist"
-  ],
   "keywords": [
     "mcp",
     "model-context-protocol",
@@ -18,14 +10,36 @@
     "design",
     "claude"
   ],
+  "homepage": "https://pixel-lens.yefimov.tech/docs#mcp",
+  "bugs": {
+    "url": "https://github.com/valyefimov/pixel-lens/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/valyefimov/pixel-lens.git",
+    "directory": "packages/mcp"
+  },
+  "license": "MIT",
+  "author": "Valentyn Yefimov",
+  "type": "module",
+  "bin": {
+    "pixel-lens-mcp": "./dist/cli.mjs"
+  },
+  "files": [
+    "dist"
+  ],
   "engines": {
     "node": ">=20"
+  },
+  "publishConfig": {
+    "access": "public"
   },
   "scripts": {
     "build": "tsdown",
     "dev": "tsdown --watch",
     "test": "vitest run",
-    "typecheck": "tsc --noEmit"
+    "typecheck": "tsc --noEmit",
+    "prepublishOnly": "pnpm build && pnpm test"
   },
   "dependencies": {
     "@modelcontextprotocol/sdk": "^1.32.1",
