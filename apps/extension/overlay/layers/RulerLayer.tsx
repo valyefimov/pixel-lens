@@ -104,6 +104,8 @@ export function RulerLayer() {
   };
 
   const onUp = (e: RPointerEvent) => {
+    // Browsers may coalesce the last pointermoves into the release, so apply the final position first.
+    onMove(e);
     const d = dragging.current;
     dragging.current = null;
     if (!d) return;
