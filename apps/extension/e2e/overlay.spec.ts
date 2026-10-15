@@ -123,5 +123,14 @@ test("ruler draws a measured rectangle", async () => {
   await page.mouse.move(500, 450, { steps: 4 });
   await page.mouse.up();
   await expect(shadow(page, ".pl-label text").filter({ hasText: "100 × 50" })).toBeVisible();
+
+  // Dragging out of the left ruler creates vertical guides; the gap between them is labelled.
+  for (const x of [600, 720]) {
+    await page.mouse.move(8, 300);
+    await page.mouse.down();
+    await page.mouse.move(x, 300, { steps: 4 });
+    await page.mouse.up();
+  }
+  await expect(shadow(page, ".pl-label text").filter({ hasText: /^120$/ })).toBeVisible();
   await page.close();
 });
