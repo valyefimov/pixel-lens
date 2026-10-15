@@ -137,6 +137,8 @@ export function RulerLayer() {
     <svg
       className={`pl-svg ${active ? "pl-interactive pl-crosshair" : ""}`}
       onPointerDown={onDown}
+      // Without this the browser may start a native text selection or drag and cancel the pointer mid-gesture.
+      onMouseDown={(e) => active && e.preventDefault()}
       onPointerMove={onMove}
       onPointerUp={onUp}
     >

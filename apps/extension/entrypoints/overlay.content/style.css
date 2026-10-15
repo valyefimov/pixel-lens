@@ -113,6 +113,8 @@ html {
 }
 .pl-crosshair {
   cursor: crosshair;
+  user-select: none;
+  touch-action: none;
 }
 .pl-label text {
   font: 600 11px var(--mono);
