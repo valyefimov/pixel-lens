@@ -16,7 +16,14 @@
   <a href="CONTRIBUTING.md">Contributing</a>
 </p>
 
----
+<p align="center">
+  <img src="docs/screenshot.png" width="800" alt="Pixel Lens inspecting a button: size, typography, contrast, box model and Tailwind classes in a hover card" />
+</p>
+
+<p align="center">
+  <a href="docs/media/demo.mp4"><img src="docs/media/demo-poster.png" width="480" alt="Demo video poster" /></a><br />
+  <sub><a href="docs/media/demo.mp4">Watch the 90-second demo</a></sub>
+</p>
 
 ## Features
 
@@ -86,6 +93,16 @@ claude mcp add pixel-lens -- npx -y @vefimov/pixel-lens
 ```
 
 Open the extension options, switch on **Agent Bridge** and grant site access. See [packages/mcp](packages/mcp/README.md) for the full tool list.
+
+### Demo video
+
+The demo is rebuilt from real screenshots of the extension. `apps/extension/demo/capture.mjs` drives Chromium with Playwright on a sample page, and [termdub](https://github.com/valyefimov/termdub) adds the narration and assembles the video from `apps/extension/demo/demo.yaml`. You need ffmpeg and `edge-tts` (`pip install edge-tts`).
+
+```bash
+pnpm --filter @pixel-lens/extension demo
+```
+
+The output goes to `docs/media/`.
 
 ## Scripts
 
