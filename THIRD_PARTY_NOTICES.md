@@ -4,7 +4,7 @@ Pixel Lens is released under the MIT license (see [LICENSE](LICENSE)). It uses t
 
 ## Shipped with Pixel Lens
 
-These components end up inside a built artifact (the extension package, the website or the `@pixel-lens/mcp` package).
+These components end up inside a built artifact (the extension package, the website or the `@vefimov/pixel-lens` package).
 
 | Component | Where | License |
 | --- | --- | --- |
