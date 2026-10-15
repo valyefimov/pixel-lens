@@ -1,6 +1,6 @@
 {
   "name": "@vefimov/pixel-lens",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "MCP server that gives AI coding agents eyes and hands in your browser through the Pixel Lens extension.",
   "keywords": [
     "mcp",

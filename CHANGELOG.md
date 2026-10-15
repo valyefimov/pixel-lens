@@ -2,6 +2,17 @@
 
 All notable changes to this project are documented here. The format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/) and the project uses [Semantic Versioning](https://semver.org).
 
+## [1.0.1] - 2026-10-15
+
+### Extension
+
+- Fixed: the browser could cancel a ruler drag halfway through by starting a native text selection or drag, which left a guide short of where you let go. The ruler now blocks both and applies the final pointer position on release.
+- Fixed: the hover card now hides while the pointer is over the dock or a panel, so it no longer covers them.
+
+### MCP server (`@vefimov/pixel-lens`)
+
+- No behavior changes. Rebuilt with the current tsdown bundling option.
+
 ## [1.0.0] - 2026-10-15
 
 First public release.
@@ -27,4 +38,5 @@ First public release.
 
 - Landing page with a working inspector demo, documentation, privacy policy and terms at https://pixel-lens.yefimov.tech.
 
+[1.0.1]: https://github.com/valyefimov/pixel-lens/releases/tag/v1.0.1
 [1.0.0]: https://github.com/valyefimov/pixel-lens/releases/tag/v1.0.0

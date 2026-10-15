@@ -76,7 +76,7 @@ pnpm dev:web      # run the website at http://localhost:4321
 
 ### Install the extension
 
-Download `pixel-lens-1.0.0-chrome.zip` from the [latest release](https://github.com/valyefimov/pixel-lens/releases/latest) and unzip it. Open `chrome://extensions`, enable **Developer mode**, click **Load unpacked** and pick the unzipped folder.
+Download `pixel-lens-1.0.1-chrome.zip` from the [latest release](https://github.com/valyefimov/pixel-lens/releases/latest) and unzip it. Open `chrome://extensions`, enable **Developer mode**, click **Load unpacked** and pick the unzipped folder.
 
 To build it yourself instead:
 
