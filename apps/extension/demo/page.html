@@ -1,0 +1,66 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>Driftwood — Plan trips together</title>
+    <meta name="description" content="Driftwood is a fictional travel planner used in the Pixel Lens demo." />
+    <style>
+      * { box-sizing: border-box; }
+      body { margin: 0; font: 16px/1.5 -apple-system, "Segoe UI", Inter, system-ui, sans-serif; color: #1c1b19; background: #f7f4ee; }
+      nav { display: flex; align-items: center; gap: 32px; padding: 20px 64px; }
+      .logo { font-weight: 800; font-size: 20px; letter-spacing: -0.02em; }
+      .logo span { color: #e2603a; }
+      nav a { color: #5f5b54; text-decoration: none; font-size: 15px; }
+      nav .cta-small { margin-left: auto; background: #1c1b19; color: #fff; padding: 9px 18px; border-radius: 999px; font-weight: 600; }
+      .hero { display: grid; grid-template-columns: 1.1fr 1fr; gap: 48px; align-items: center; padding: 40px 64px 32px; }
+      .eyebrow { display: inline-block; background: #ffe3d6; color: #b8441f; font-size: 13px; font-weight: 700; padding: 4px 12px; border-radius: 999px; }
+      h1 { font-size: 52px; line-height: 1.05; letter-spacing: -0.035em; margin: 18px 0 16px; }
+      .lead { font-size: 18px; color: #6b665e; max-width: 460px; margin: 0 0 28px; }
+      .actions { display: flex; gap: 12px; }
+      .btn { display: inline-flex; align-items: center; padding: 14px 26px; border-radius: 999px; font-weight: 700; font-size: 15px; text-decoration: none; }
+      .btn-primary { background: #e2603a; color: #fff; }
+      .btn-ghost { border: 1.5px solid #d8d2c6; color: #1c1b19; }
+      .note { margin-top: 18px; font-size: 13px; color: #b3ada3; }
+      .visual { position: relative; height: 380px; border-radius: 28px; background: linear-gradient(135deg, #ffb48f, #e2603a 55%, #8f3b6e); overflow: hidden; }
+      .visual .sun { position: absolute; right: 60px; top: 50px; width: 110px; height: 110px; border-radius: 50%; background: #ffe7b8; }
+      .visual .hill { position: absolute; left: -40px; right: -40px; bottom: -120px; height: 260px; border-radius: 50%; background: #3d2147; }
+      .visual .card { position: absolute; left: 28px; bottom: 28px; background: #fff; border-radius: 18px; padding: 16px 18px; width: 240px; box-shadow: 0 12px 32px rgba(0,0,0,.18); }
+      .card b { display: block; font-size: 15px; }
+      .card small { color: #8a857c; }
+      .features { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; padding: 24px 64px 64px; }
+      .feature { background: #fff; border-radius: 20px; padding: 24px; }
+      .icon { width: 40px; height: 40px; border-radius: 12px; margin-bottom: 14px; }
+      .feature h3 { margin: 0 0 6px; font-size: 17px; }
+      .feature p { margin: 0; color: #77726a; font-size: 14px; }
+    </style>
+  </head>
+  <body>
+    <nav>
+      <div class="logo">drift<span>wood</span></div>
+      <a href="#">Trips</a><a href="#">Guides</a><a href="#">Pricing</a>
+      <a class="cta-small" href="#">Sign in</a>
+    </nav>
+    <section class="hero">
+      <div>
+        <span class="eyebrow">New · Shared itineraries</span>
+        <h1>Plan trips together, not in group chats</h1>
+        <p class="lead">One itinerary for everyone, with bookings, maps and budgets in the same place.</p>
+        <div class="actions">
+          <a class="btn btn-primary" href="#">Start planning</a>
+          <a class="btn btn-ghost" href="#">See an example</a>
+        </div>
+        <p class="note">Free for up to 4 travellers</p>
+      </div>
+      <div class="visual">
+        <div class="sun"></div>
+        <div class="hill"></div>
+        <div class="card"><b>Lisbon, 5 days</b><small>4 travellers · 12 places saved</small></div>
+      </div>
+    </section>
+    <section class="features">
+      <div class="feature"><div class="icon" style="background:#ffe3d6"></div><h3>One shared plan</h3><p>Everyone edits the same itinerary in real time.</p></div>
+      <div class="feature"><div class="icon" style="background:#dff1ea"></div><h3>Bookings in one place</h3><p>Forward a confirmation email and it lands on the right day.</p></div>
+      <div class="feature"><div class="icon" style="background:#e4e6fb"></div><h3>Split the budget</h3><p>See who paid for what without a spreadsheet.</p></div>
+    </section>
+  </body>
+</html>

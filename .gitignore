@@ -11,3 +11,7 @@ coverage
 web-ext.config.ts
 test-results
 playwright-report
+
+# termdub voice/frame cache and captured demo frames
+.termdub
+apps/extension/demo/shots

@@ -1,0 +1,57 @@
+# Narrated demo of the extension, rendered with termdub (https://github.com/valyefimov/termdub).
+# Capture the screenshots first: `pnpm demo` in apps/extension runs both steps.
+title: ~/pixel-lens
+window: { width: 1280, height: 720, fontSize: 18 }
+timing: { lead: 0.5, tail: 0.7, minScene: 2.5 }
+
+tts:
+  provider: edge
+  rate: "+2%"
+
+languages:
+  en: { voice: en-US-AndrewNeural }
+
+output:
+  dir: ../../../docs/media
+  name: demo
+  screenshots: false
+  poster: true
+
+scenes:
+  - name: page
+    image: shots/01-page.png
+    say: This is Pixel Lens, a free browser extension for measuring, inspecting and editing any web page.
+  - name: dock
+    image: shots/02-dock.png
+    say: Click the toolbar icon, or press Alt Shift P, and a small toolbar appears at the bottom of the page.
+  - name: inspect
+    image: shots/03-inspect.png
+    say: Hover any element to see its size, spacing, font, colors and contrast, along with the matching Tailwind classes.
+  - name: measure
+    image: shots/04-measure.png
+    say: Click an element, hold Alt, and point at another one. Pixel Lens shows the exact distance between them.
+  - name: measure-text
+    image: shots/05-measure-text.png
+    say: It works for text too, so you can check the gap between a heading and the paragraph below it.
+  - name: ruler
+    image: shots/06-ruler.png
+    say: The ruler measures any area and snaps to element edges. Drag guides out of the rulers to check alignment.
+  - name: grid
+    image: shots/07-grid.png
+    say: Press G for a column grid, and see whether the layout really sits on it.
+  - name: colors
+    image: shots/08-colors.png
+    say: The colors panel lists every color on the page, and the eyedropper picks any pixel on screen.
+  - name: audit
+    image: shots/09-audit.png
+    say: The audit finds text with poor contrast and common SEO problems. Click an issue to jump straight to it.
+  - name: edit
+    image: shots/10-edit.png
+    say: In edit mode you change CSS right on the live page. Every change goes into a diff you can copy, or hand to your coding agent.
+  - name: agent
+    command: npx -y @vefimov/pixel-lens --help
+    say: There's also an MCP server, so Claude Code or Cursor can measure and edit the page for you.
+  - name: outro
+    html: outro.html
+    say: Pixel Lens is free and open source. Get it at pixel-lens dot yefimov dot tech.
+    hold: 4
