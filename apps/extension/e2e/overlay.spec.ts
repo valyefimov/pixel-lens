@@ -131,6 +131,11 @@ test("ruler draws a measured rectangle", async () => {
 
   // Dragging out of the left ruler creates vertical guides; the gap between them is labelled.
   // Alt disables snapping, so font metrics on the runner can't pull a guide onto a nearby element edge.
+  await page.evaluate(() => {
+    (window as any).__ev = [];
+    for (const t of ["pointerdown", "pointermove", "pointerup", "pointercancel", "lostpointercapture", "gotpointercapture"])
+      window.addEventListener(t, (e: any) => (window as any).__ev.push(`${t}@${e.clientX},${e.clientY} alt=${e.altKey} tgt=${e.target?.tagName}`), true);
+  });
   await page.keyboard.down("Alt");
   for (const x of [600, 720]) {
     await page.mouse.move(8, 300);
@@ -139,6 +144,8 @@ test("ruler draws a measured rectangle", async () => {
     await page.mouse.up();
   }
   await page.keyboard.up("Alt");
+  console.log("DEBUG events", JSON.stringify(await page.evaluate(() => (window as any).__ev)));
+  console.log("DEBUG labels", JSON.stringify(await shadow(page, ".pl-label text").allTextContents()));
   await expect(shadow(page, ".pl-label text").filter({ hasText: /^120$/ })).toBeVisible();
   await page.close();
 });
