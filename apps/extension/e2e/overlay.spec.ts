@@ -139,6 +139,9 @@ test("ruler draws a measured rectangle", async () => {
     await page.mouse.up();
   }
   await page.keyboard.up("Alt");
+  console.log("DEBUG labels", JSON.stringify(await shadow(page, ".pl-label text").allTextContents()));
+  console.log("DEBUG lines", JSON.stringify(await page.evaluate(() => [...document.querySelector("pixel-lens-overlay")!.shadowRoot!.querySelectorAll(".pl-guide line")].map((l) => l.outerHTML))));
+  console.log("DEBUG viewport", JSON.stringify(await page.evaluate(() => [innerWidth, innerHeight, scrollX, scrollY])));
   await expect(shadow(page, ".pl-label text").filter({ hasText: /^120$/ })).toBeVisible();
   await page.close();
 });
