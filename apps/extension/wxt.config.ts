@@ -5,6 +5,10 @@ export default defineConfig({
   modules: ["@wxt-dev/module-react"],
   // Explicit imports keep the code greppable and editor-friendly.
   imports: false,
+  zip: {
+    artifactTemplate: "pixel-lens-{{version}}-{{browser}}.zip",
+    sourcesTemplate: "pixel-lens-{{version}}-sources.zip",
+  },
   manifest: {
     name: "Pixel Lens",
     description:
