@@ -59,30 +59,36 @@ const faqs = [
 <Base>
   <!-- Hero -->
   <section class="relative overflow-hidden">
-    <div class="bg-grid absolute inset-0 [mask-image:radial-gradient(70%_60%_at_50%_30%,black,transparent)]"></div>
-    <div class="glow absolute inset-0"></div>
-    <div class="relative mx-auto max-w-6xl px-4 pt-20 pb-16 sm:px-6 sm:pt-28">
-      <div class="mx-auto max-w-3xl text-center">
+    <div class="bg-grid absolute inset-0 [mask-image:radial-gradient(70%_70%_at_70%_30%,black,transparent)]"></div>
+    <div class="glow absolute inset-0 translate-x-1/4"></div>
+    <div class="relative mx-auto grid max-w-6xl items-center gap-14 px-4 pt-16 pb-20 sm:px-6 sm:pt-24 lg:grid-cols-[minmax(0,0.9fr)_minmax(0,1.1fr)] lg:gap-10 lg:pt-28">
+      <div>
         <p class="eyebrow mb-5">Browser extension · Free & open source</p>
-        <h1 class="text-[clamp(2.4rem,6vw,4.4rem)] leading-[1.02] font-semibold tracking-[-0.035em] text-balance text-white">
+        <h1 class="text-[clamp(2.4rem,5vw,4rem)] leading-[1.02] font-semibold tracking-[-0.035em] text-balance text-white">
           Every pixel, <span class="relative whitespace-nowrap text-lens-300">accounted&nbsp;for<span class="dim-tag absolute -top-3 -right-3 rotate-3 text-[11px] leading-4 tracking-normal">8px</span></span>
         </h1>
-        <p class="mx-auto mt-6 max-w-xl text-lg leading-8 text-pretty text-ink-300">
+        <p class="mt-6 max-w-md text-lg leading-8 text-pretty text-ink-300">
           Measure distances, inspect real CSS, compare against your design and edit the page live. Then hand the diff to your AI agent.
         </p>
-        <div class="mt-9 flex flex-wrap items-center justify-center gap-3">
+        <div class="mt-9 flex flex-wrap items-center gap-3">
           <a href={SITE.install} class="btn-primary">
             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M12 3v12m0 0 5-5m-5 5-5-5M5 21h14"></path></svg>
             Install Pixel Lens
           </a>
           <a href="#how" class="btn-ghost">See how it works</a>
         </div>
-        <p class="mt-5 font-mono text-xs text-ink-400">
-          Chrome · Edge · Brave · Arc &nbsp;·&nbsp; toggle with <kbd class="kbd">Alt</kbd> <kbd class="kbd">Shift</kbd> <kbd class="kbd">P</kbd>
-        </p>
+        <dl class="mt-10 grid max-w-md grid-cols-[auto_1fr] gap-x-4 gap-y-2.5 font-mono text-xs text-ink-300">
+          <dt><kbd class="kbd">Alt</kbd> <kbd class="kbd">Shift</kbd> <kbd class="kbd">P</kbd></dt>
+          <dd>turn it on for the current tab</dd>
+          <dt><kbd class="kbd">/</kbd></dt>
+          <dd>search every tool in the command palette</dd>
+          <dt><kbd class="kbd">Alt</kbd></dt>
+          <dd>hold it to measure from the selection</dd>
+        </dl>
+        <p class="mt-6 font-mono text-xs text-ink-400">Chrome · Edge · Brave · Arc</p>
       </div>
 
-      <div class="mx-auto mt-16 max-w-5xl">
+      <div class="min-w-0">
         <InspectorDemo client:visible />
       </div>
     </div>
@@ -224,7 +230,7 @@ const faqs = [
     <div class="glow absolute inset-0 rotate-180"></div>
     <div class="relative mx-auto max-w-3xl px-4 py-24 text-center sm:px-6">
       <h2 class="text-3xl font-semibold tracking-tight text-balance text-white sm:text-5xl">Stop eyeballing. Start measuring.</h2>
-      <p class="mt-4 text-ink-300">Free forever. No account. Works on any page.</p>
+      <p class="mt-4 text-ink-300">Free forever, nothing to sign up for. Works on any page.</p>
       <div class="mt-8 flex flex-wrap justify-center gap-3">
         <a href={SITE.install} class="btn-primary">Install Pixel Lens</a>
         <a href={SITE.github} class="btn-ghost">Star on GitHub</a>
