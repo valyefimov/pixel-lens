@@ -8,6 +8,8 @@ export default defineConfig({
   zip: {
     artifactTemplate: "pixel-lens-{{version}}-{{browser}}.zip",
     sourcesTemplate: "pixel-lens-{{version}}-sources.zip",
+    // Generated demo frames are git-ignored and not needed to rebuild the extension.
+    excludeSources: ["demo/shots/**", "test-results/**", "playwright-report/**"],
   },
   manifest: {
     name: "Pixel Lens",
