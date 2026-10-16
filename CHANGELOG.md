@@ -2,7 +2,7 @@
 
 All notable changes to this project are documented here. The format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/) and the project uses [Semantic Versioning](https://semver.org).
 
-## [Unreleased]
+## [1.1.0] - 2026-10-16
 
 ### Extension
 
@@ -13,6 +13,10 @@ All notable changes to this project are documented here. The format follows [Kee
 ### Website
 
 - The home page hero is split in two columns, and the demo shows the real lens button and palette.
+
+### MCP server (`@vefimov/pixel-lens`)
+
+- No changes. The npm package stays at 1.0.0.
 
 ## [1.0.1] - 2026-10-15
 
@@ -50,5 +54,6 @@ First public release.
 
 - Landing page with a working inspector demo, documentation, privacy policy and terms at https://pixel-lens.yefimov.tech.
 
+[1.1.0]: https://github.com/valyefimov/pixel-lens/releases/tag/v1.1.0
 [1.0.1]: https://github.com/valyefimov/pixel-lens/releases/tag/v1.0.1
 [1.0.0]: https://github.com/valyefimov/pixel-lens/releases/tag/v1.0.0
