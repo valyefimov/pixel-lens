@@ -46,7 +46,7 @@ async function openWithOverlay(): Promise<Page> {
     await chrome.scripting.executeScript({ target: { tabId: tab!.id! }, files: ["/content-scripts/overlay.js"] });
   }, baseURL);
   await expect(page.locator("pixel-lens-overlay")).toBeAttached();
-  await expect(shadow(page, ".pl-dock")).toBeVisible();
+  await expect(shadow(page, ".pl-lens")).toBeVisible();
   return page;
 }
 
@@ -140,5 +140,33 @@ test("ruler draws a measured rectangle", async () => {
   }
   await page.keyboard.up("Alt");
   await expect(shadow(page, ".pl-label text").filter({ hasText: /^120$/ })).toBeVisible();
+  await page.close();
+});
+
+test("the command palette finds tools by keyword and runs them", async () => {
+  const page = await openWithOverlay();
+  await expect(shadow(page, ".pl-lens-label")).toHaveText("Inspect");
+
+  await page.keyboard.press("/");
+  const palette = shadow(page, ".pl-cmdk");
+  await expect(palette).toBeVisible();
+
+  // "spacing" is only a keyword of Measure, not part of its name.
+  await page.keyboard.type("spacing");
+  await expect(shadow(page, '.pl-cmdk-item[aria-selected="true"]')).toContainText("Measure");
+  await page.keyboard.press("Enter");
+  await expect(palette).toBeHidden();
+  await expect(shadow(page, ".pl-lens-label")).toHaveText("Measure distances");
+
+  // Ctrl+K toggles it, Escape closes it, and toggles show their state.
+  await page.keyboard.press("Control+k");
+  await expect(palette).toBeVisible();
+  await page.keyboard.type("grid");
+  await page.keyboard.press("Enter");
+  await page.keyboard.press("Control+k");
+  await page.keyboard.type("grid");
+  await expect(shadow(page, ".pl-cmdk-live")).toHaveText("on");
+  await page.keyboard.press("Escape");
+  await expect(palette).toBeHidden();
   await page.close();
 });
