@@ -48,6 +48,9 @@ scenes:
   - name: audit
     image: shots/09-audit.png
     say: The audit finds text with poor contrast and common SEO problems. Click an issue to jump straight to it.
+  - name: devtools
+    image: shots/12-devtools-audit.png
+    say: The same audit also lives in Chrome DevTools, as a Pixel Lens tab. Click a contrast issue, and it selects that element in the Elements panel.
   - name: edit
     image: shots/10-edit.png
     say: In edit mode you change CSS right on the live page. Every change goes into a diff you can copy, or hand to your coding agent.

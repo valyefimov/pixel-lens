@@ -21,6 +21,8 @@ const context = await chromium.launchPersistentContext("", {
   headless: true,
   viewport: { width: 1280, height: 720 },
   deviceScaleFactor: 2,
+  // The DevTools panel follows prefers-color-scheme when it is opened outside DevTools.
+  colorScheme: "dark",
   args: [`--disable-extensions-except=${extensionPath}`, `--load-extension=${extensionPath}`],
 });
 const worker = context.serviceWorkers()[0] ?? (await context.waitForEvent("serviceworker"));
@@ -127,6 +129,24 @@ for (const [name, value] of [
 await page.locator("pixel-lens-overlay >> .pl-diff").scrollIntoViewIfNeeded();
 await page.mouse.move(1140, 300);
 await shot("10-edit");
+
+// DevTools panel, opened as a regular tab so it can be screenshotted (see page-api.ts).
+await key("Escape");
+await key("Escape");
+const tabId = await worker.evaluate(async (u) => (await chrome.tabs.query({ url: u }))[0].id, url);
+const extensionId = new URL(worker.url()).host;
+const panel = await context.newPage();
+await panel.setViewportSize({ width: 1100, height: 640 });
+await panel.goto(`chrome-extension://${extensionId}/devtools-panel.html?tabId=${tabId}`);
+await panel.waitForTimeout(700);
+await panel.screenshot({ path: path.join(shots, "11-devtools-colors.png") });
+await panel.getByRole("tab", { name: "Audit" }).click();
+await panel.waitForTimeout(500);
+await panel.screenshot({ path: path.join(shots, "12-devtools-audit.png") });
+await panel.getByRole("tab", { name: "Page report" }).click();
+await panel.waitForTimeout(500);
+await panel.screenshot({ path: path.join(shots, "13-devtools-page.png") });
+console.log("captured devtools");
 
 await context.close();
 server.close();
