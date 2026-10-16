@@ -21,6 +21,10 @@
 </p>
 
 <p align="center">
+  <img src="docs/devtools-panel.png" width="800" alt="The Pixel Lens tab in Chrome DevTools listing contrast issues with their selectors" />
+</p>
+
+<p align="center">
   <a href="docs/media/demo.mp4"><img src="docs/media/demo-poster.png" width="480" alt="Demo video poster" /></a><br />
   <sub><a href="docs/media/demo.mp4">Watch the 90-second demo</a></sub>
 </p>
@@ -40,6 +44,7 @@
 | Audit | WCAG AA/AAA contrast failures and SEO basics, with one-click jump to the element. | `U` |
 | Page report | Page weight by resource type, detected technologies, social preview. | `P` |
 | Grid & outlines | Configurable column grid and outlines on every element. | `G` `X` |
+| DevTools panel | A "Pixel Lens" tab in Chrome DevTools with the page palette, typography, contrast and SEO audit, and page report. Click a contrast issue to select that element in the Elements panel. It needs no extra permission. | |
 | Command palette | One small button in the corner instead of a toolbar. Search every tool, panel and overlay by name or keyword. | `/` or `Ctrl/Cmd+K` |
 | Agent bridge | Local MCP server so Claude Code, Cursor or Windsurf can inspect, measure, edit and screenshot the active tab. | |
 

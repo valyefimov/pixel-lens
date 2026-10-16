@@ -155,6 +155,16 @@ pnpm --filter @pixel-lens/extension build</code></pre>
         <li><strong>Typography</strong>: every font family with its size/line-height/weight combinations. Copy a type scale or a <code>font</code> shorthand.</li>
         <li><strong>Assets</strong>: images, inline SVGs, CSS background images and videos. Download them or copy SVG markup.</li>
       </ul>
+      <h3>DevTools panel</h3>
+      <p>
+        Open Chrome DevTools on any page and pick the Pixel Lens tab next to Elements and Console. It has four views: Colors (palette and
+        gradients, with a format switch and a copy-as-CSS-variables button), Typography, Audit (contrast and SEO) and Page report. Click a contrast issue to
+        select that element in the Elements panel. The panel reads the page again when it navigates, and the Refresh button reads it on demand.
+      </p>
+      <p>
+        It needs no extra permission: it uses the DevTools API for reading the inspected page, and opening DevTools on the page is what authorizes it.
+        It reads the main frame only. The overlay tools (rulers, measuring, live edit) stay in the page overlay.
+      </p>
       <h3>Audit & page report</h3>
       <ul>
         <li><strong>Contrast</strong>: scans all visible text against its composited background and lists AA or AAA failures. Click one to select it.</li>

@@ -69,6 +69,14 @@ The net edits are persisted in `chrome.storage.local` under `edits:<origin><path
 
 `selectorFor` prefers a unique id, then up to two *stable* class names per level (generated CSS-in-JS and CSS-module classes are skipped), then `:nth-of-type`, and stops climbing as soon as the selector is unique.
 
+### DevTools panel (`entrypoints/devtools`, `entrypoints/devtools-panel`, `entrypoints/inspect.ts`)
+
+- `devtools/` is the manifest's `devtools_page`. It has no UI and only calls `chrome.devtools.panels.create` to add the "Pixel Lens" tab, which loads `devtools-panel.html`.
+- The panel is a separate React app. It never touches the page directly. `page-api.ts` fetches `inspect.js` (an unlisted script built from `lib/inspect-api.ts`), wraps it in an expression and runs it in the inspected page with `chrome.devtools.inspectedWindow.eval`. The script installs a read-only API under a `Symbol.for("pixel-lens.inspect")` key, and every call returns plain JSON.
+- This route needs no host permission and no content script, because opening DevTools on the page is the user's action. DevTools evaluation is also not subject to the page's Content-Security-Policy.
+- Selecting an element from the panel evaluates DevTools' own `inspect(el)`.
+- Tests: the real `chrome.devtools` path cannot be driven by Playwright. The panel therefore has a second transport for tests: opened as a normal tab with `?tabId=<n>` it runs the same expressions through `scripting.executeScript`, which only works in the E2E build that keeps host permissions. Everything above the transport is covered; the DevTools transport itself needs a manual check.
+
 ## packages/mcp
 
 - `bridge.ts`: a `WebSocketServer` bound to `127.0.0.1` that only accepts `chrome-extension://` or `moz-extension://` origins. Requests are correlated by UUID with a per-call timeout; a disconnect rejects everything in flight.
