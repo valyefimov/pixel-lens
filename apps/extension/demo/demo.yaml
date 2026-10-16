@@ -21,9 +21,12 @@ scenes:
   - name: page
     image: shots/01-page.png
     say: This is Pixel Lens, a free browser extension for measuring, inspecting and editing any web page.
-  - name: dock
-    image: shots/02-dock.png
-    say: Click the toolbar icon, or press Alt Shift P, and a small toolbar appears at the bottom of the page.
+  - name: lens
+    image: shots/02-lens.png
+    say: Click the toolbar icon, or press Alt Shift P. One small button appears in the corner, and it shows the tool you're using.
+  - name: palette
+    image: shots/02b-palette.png
+    say: Press slash to open the command palette. Type a name, or just a keyword like spacing, and it finds the right tool.
   - name: inspect
     image: shots/03-inspect.png
     say: Hover any element to see its size, spacing, font, colors and contrast, along with the matching Tailwind classes.

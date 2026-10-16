@@ -45,10 +45,15 @@ await worker.evaluate(async (u) => {
   await chrome.scripting.executeScript({ target: { tabId: tab.id }, files: ["/content-scripts/overlay.js"] });
 }, url);
 await page.locator("pixel-lens-overlay").waitFor({ state: "attached" });
-// Parking the cursor on the dock logo clears the hover card.
-const logo = await box("pixel-lens-overlay >> .pl-logo");
-const park = () => page.mouse.move(...center(logo));
-await shot("02-dock");
+// Parking the cursor on the lens button clears the hover card.
+const lens = await box("pixel-lens-overlay >> .pl-lens");
+const park = () => page.mouse.move(...center(lens));
+await park();
+await shot("02-lens");
+await key("/");
+await page.keyboard.type("spac", { delay: 60 });
+await shot("02b-palette");
+await key("Escape");
 
 // Inspect: hover the primary button.
 await page.mouse.move(...center(await box(".btn-primary")));
