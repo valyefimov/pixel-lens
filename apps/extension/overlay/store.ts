@@ -40,7 +40,9 @@ export interface OverlayState {
   altDown: boolean;
   shiftDown: boolean;
   grid: boolean;
-  xray: boolean;
+  outlines: boolean;
+  /** Command palette visibility. */
+  palette: boolean;
   guides: Guide[];
   rulerDraft: { from: Point; to: Point } | null;
   rulers: { from: Point; to: Point }[];
@@ -62,7 +64,8 @@ const initial: OverlayState = {
   altDown: false,
   shiftDown: false,
   grid: false,
-  xray: false,
+  outlines: false,
+  palette: false,
   guides: [],
   rulerDraft: null,
   rulers: [],

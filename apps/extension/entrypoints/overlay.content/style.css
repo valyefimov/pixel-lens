@@ -138,21 +138,21 @@ html {
   fill: rgba(255, 255, 255, 0.6);
 }
 
-/* ---------- Dock ---------- */
+/* ---------- Lens button ---------- */
 
-.pl-dock {
+.pl-root .pl-lens {
   position: fixed;
-  left: 50%;
+  right: 16px;
   bottom: 16px;
-  transform: translateX(-50%);
   display: flex;
   align-items: center;
-  gap: 2px;
-  padding: 5px;
-  border-radius: 14px;
+  gap: 9px;
+  height: 40px;
+  padding: 0 10px 0 5px;
+  border-radius: 999px;
   background: var(--bg);
   border: 1px solid var(--line);
-  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.45), 0 0 0 0.5px rgba(0, 0, 0, 0.6);
+  box-shadow: 0 10px 34px rgba(0, 0, 0, 0.4);
   backdrop-filter: blur(16px) saturate(1.4);
   pointer-events: auto;
   animation: pl-rise 0.18s ease-out;
@@ -160,62 +160,147 @@ html {
 @keyframes pl-rise {
   from {
     opacity: 0;
-    transform: translate(-50%, 8px);
+    transform: translateY(8px);
   }
 }
-.pl-logo {
+.pl-root .pl-lens:hover {
+  background: #1d1d26;
+  border-color: rgba(124, 92, 255, 0.5);
+}
+.pl-lens-mark {
   display: grid;
   place-items: center;
-  width: 32px;
-  height: 32px;
-  color: var(--accent);
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  color: #fff;
+  background: radial-gradient(circle at 30% 25%, #a18bff, #5534f0 70%);
+  box-shadow: 0 0 0 3px rgba(124, 92, 255, 0.22);
 }
-.pl-sep {
-  width: 1px;
-  height: 20px;
-  margin: 0 4px;
-  background: var(--line);
-}
-.pl-root .pl-dock-btn {
-  position: relative;
-  display: grid;
-  place-items: center;
-  width: 32px;
-  height: 32px;
-  padding: 0;
-  border: 0;
-  background: transparent;
-  color: #b9b9c6;
-}
-.pl-root .pl-dock-btn:hover {
-  background: var(--bg-hover);
-  color: var(--text);
-}
-.pl-root .pl-dock-btn.pl-on {
-  background: var(--accent-soft);
-  color: #b7a6ff;
-}
-.pl-tip {
-  position: absolute;
-  bottom: calc(100% + 10px);
-  left: 50%;
-  transform: translateX(-50%);
+.pl-lens-label {
+  font-weight: 600;
+  font-size: 12.5px;
   white-space: nowrap;
-  padding: 5px 8px;
-  border-radius: 7px;
-  background: var(--bg-solid);
-  border: 1px solid var(--line);
-  color: var(--text);
-  opacity: 0;
-  pointer-events: none;
-  transition: opacity 0.1s;
-  display: flex;
-  gap: 6px;
-  align-items: center;
 }
-.pl-dock-btn:hover .pl-tip {
-  opacity: 1;
-  transition-delay: 0.25s;
+
+/* ---------- Command palette ---------- */
+
+.pl-cmdk-backdrop {
+  position: fixed;
+  inset: 0;
+  z-index: 5;
+  background: rgba(8, 8, 10, 0.38);
+  pointer-events: auto;
+  animation: pl-fade 0.12s ease-out;
+}
+@keyframes pl-fade {
+  from {
+    opacity: 0;
+  }
+}
+.pl-cmdk {
+  position: absolute;
+  top: min(16vh, 140px);
+  left: 50%;
+  width: min(540px, calc(100vw - 32px));
+  transform: translateX(-50%);
+  display: flex;
+  flex-direction: column;
+  max-height: min(520px, 70vh);
+  border-radius: 16px;
+  background: var(--bg-solid);
+  border: 1px solid rgba(124, 92, 255, 0.45);
+  box-shadow: 0 24px 80px rgba(0, 0, 0, 0.55), 0 0 0 4px rgba(124, 92, 255, 0.1);
+  overflow: hidden;
+  animation: pl-pop 0.14s ease-out;
+}
+@keyframes pl-pop {
+  from {
+    opacity: 0;
+    transform: translateX(-50%) scale(0.98);
+  }
+}
+.pl-cmdk-input {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 0 14px;
+  height: 50px;
+  border-bottom: 1px solid var(--line);
+  color: var(--muted);
+}
+.pl-cmdk-input input {
+  flex: 1;
+  min-width: 0;
+  font: 14px Inter, ui-sans-serif, system-ui, sans-serif;
+  color: var(--text);
+  background: none;
+  border: 0;
+  outline: none;
+}
+.pl-root .pl-cmdk-input input:focus-visible {
+  outline: none;
+}
+.pl-cmdk-input input::placeholder {
+  color: var(--muted);
+}
+.pl-cmdk-list {
+  overflow: auto;
+  padding: 6px;
+  scrollbar-width: thin;
+}
+.pl-cmdk-group {
+  padding: 10px 10px 4px;
+  font-size: 10.5px;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--muted);
+}
+.pl-root .pl-cmdk-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  width: 100%;
+  height: 38px;
+  padding: 0 10px;
+  border: 0;
+  border-radius: 9px;
+  background: none;
+  text-align: left;
+  color: #c7c7d2;
+}
+.pl-root .pl-cmdk-item.pl-on {
+  background: var(--accent-soft);
+  color: #fff;
+}
+.pl-cmdk-name {
+  flex: 1;
+  font-size: 13px;
+}
+.pl-cmdk-live {
+  font: 600 10px var(--mono);
+  text-transform: uppercase;
+  color: var(--ok);
+  padding: 1px 6px;
+  border-radius: 999px;
+  background: rgba(47, 210, 122, 0.14);
+}
+.pl-cmdk-empty {
+  padding: 22px 10px;
+  text-align: center;
+  color: var(--muted);
+}
+.pl-cmdk-foot {
+  display: flex;
+  gap: 14px;
+  align-items: center;
+  padding: 9px 14px;
+  border-top: 1px solid var(--line);
+  font-size: 11.5px;
+  color: var(--muted);
+}
+.pl-cmdk-tip {
+  margin-left: auto;
 }
 
 /* ---------- Inspector card ---------- */
@@ -440,17 +525,17 @@ html {
   right: 1px;
 }
 
-/* ---------- Side panel ---------- */
+/* ---------- Panel: a popover that grows out of the lens button ---------- */
 
 .pl-panel {
   position: fixed;
-  top: 12px;
-  right: 12px;
-  bottom: 12px;
-  width: 340px;
+  right: 16px;
+  bottom: 66px;
+  width: 360px;
+  max-height: min(680px, calc(100vh - 92px));
   display: flex;
   flex-direction: column;
-  border-radius: 16px;
+  border-radius: 18px;
   background: var(--bg);
   border: 1px solid var(--line);
   box-shadow: 0 16px 60px rgba(0, 0, 0, 0.45);
@@ -461,7 +546,7 @@ html {
 @keyframes pl-slide {
   from {
     opacity: 0;
-    transform: translateX(12px);
+    transform: translateY(10px);
   }
 }
 .pl-panel-head {
@@ -923,9 +1008,8 @@ html {
 /* Toast */
 .pl-toast {
   position: fixed;
-  left: 50%;
-  bottom: 72px;
-  transform: translateX(-50%);
+  right: 16px;
+  bottom: 66px;
   padding: 7px 12px;
   border-radius: 9px;
   background: var(--bg-solid);
@@ -933,6 +1017,7 @@ html {
   box-shadow: 0 8px 30px rgba(0, 0, 0, 0.4);
   animation: pl-rise 0.15s ease-out;
   white-space: nowrap;
+  z-index: 6;
 }
 
 @media (prefers-reduced-motion: reduce) {

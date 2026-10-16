@@ -2,8 +2,9 @@ import { useEffect } from "react";
 import { elementAt, isOverlayNode } from "@/lib/dom";
 import { editTextInPlace } from "@/lib/edits";
 import { preferences } from "@/lib/settings";
-import { Dock, PANELS, TOOLS, setTool, togglePanel } from "./Dock";
+import { PANELS, TOOLS, setTool, togglePanel } from "./commands";
 import { InspectorCard, PinnedCards } from "./InspectorCard";
+import { LensButton, Palette } from "./Lens";
 import { PanelHost } from "./Panels";
 import { GridLayer } from "./layers/GridLayer";
 import { ElementLayer } from "./layers/ElementLayer";
@@ -22,17 +23,17 @@ function isTyping(e: Event): boolean {
 const fromOverlay = (e: Event) => e.composedPath().some((n) => isOverlayNode(n as Node));
 const elementTool = () => ["inspect", "measure", "edit"].includes(store.get().tool);
 
-function useXray() {
-  const xray = useOverlay((s) => s.xray);
+function useOutlines() {
+  const outlines = useOverlay((s) => s.outlines);
   const open = useOverlay((s) => s.open);
   useEffect(() => {
-    if (!xray || !open) return;
+    if (!outlines || !open) return;
     const style = document.createElement("style");
-    style.dataset.pixelLens = "xray";
+    style.dataset.pixelLens = "outlines";
     style.textContent = `body *:not(pixel-lens-overlay):not(pixel-lens-design) { outline: 1px solid rgba(124, 92, 255, 0.45) !important; outline-offset: -1px !important; }`;
     document.head.append(style);
     return () => style.remove();
-  }, [xray, open]);
+  }, [outlines, open]);
 }
 
 function usePreferences() {
@@ -55,7 +56,7 @@ function useGlobalEvents() {
 
     const onMove = (e: PointerEvent) => {
       if (!elementTool()) return;
-      // Moving onto the dock or a panel hides the hover card so it doesn't cover the page.
+      // Moving onto the lens button or a panel hides the hover card so it doesn't cover the page.
       if (fromOverlay(e)) return store.set({ hovered: null });
       store.set({ hovered: elementAt(e.clientX, e.clientY), altDown: e.altKey, shiftDown: e.shiftKey });
     };
@@ -84,7 +85,15 @@ function useGlobalEvents() {
 
     const onKeyDown = (e: KeyboardEvent) => {
       store.set({ altDown: e.altKey, shiftDown: e.shiftKey });
-      if (isTyping(e) || e.metaKey || e.ctrlKey) return;
+      const mod = e.metaKey || e.ctrlKey;
+      // Ctrl/Cmd+K works even while typing in a page field, like in most apps with a palette.
+      if (mod && e.key.toLowerCase() === "k") {
+        e.preventDefault();
+        e.stopPropagation();
+        store.set((s) => ({ palette: !s.palette }));
+        return;
+      }
+      if (isTyping(e) || mod) return;
       const s = store.get();
       const key = e.key.length === 1 ? e.key.toUpperCase() : e.key;
       let handled = true;
@@ -95,11 +104,13 @@ function useGlobalEvents() {
       else if (panel && !e.altKey) togglePanel(panel.id);
       else if (key === "K") void pickColor();
       else if (key === "G") store.set({ grid: !s.grid });
-      else if (key === "X") store.set({ xray: !s.xray });
+      else if (key === "X") store.set({ outlines: !s.outlines });
+      else if (key === "/") store.set({ palette: true });
       else if (key === "O") store.set({ panel: "settings" });
       else if (key === "?") togglePanel("help");
       else if (key === "Escape") {
-        if (s.rulers.length || s.rulerDraft) store.set({ rulers: [], rulerDraft: null });
+        if (s.palette) store.set({ palette: false });
+        else if (s.rulers.length || s.rulerDraft) store.set({ rulers: [], rulerDraft: null });
         else if (s.selected) store.set({ selected: null });
         else if (s.panel) store.set({ panel: null });
         else store.set({ open: false });
@@ -197,7 +208,7 @@ export function App() {
   const tool = useOverlay((s) => s.tool);
   usePreferences();
   useGlobalEvents();
-  useXray();
+  useOutlines();
 
   if (!open) return null;
   return (
@@ -210,7 +221,8 @@ export function App() {
       <InspectorCard />
       <PinnedCards />
       <PanelHost />
-      <Dock />
+      <LensButton />
+      <Palette />
       <Toast />
     </div>
   );

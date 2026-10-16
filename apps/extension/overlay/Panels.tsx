@@ -1,5 +1,5 @@
 import { type Panel, store, useOverlay } from "./store";
-import { PANELS, TOOLS } from "./Dock";
+import { PANELS, TOOLS } from "./commands";
 import { AssetsPanel } from "./panels/AssetsPanel";
 import { AuditPanel } from "./panels/AuditPanel";
 import { ColorsPanel } from "./panels/ColorsPanel";
@@ -14,8 +14,9 @@ const SHORTCUTS: [string, string][] = [
   ...PANELS.map((p) => [p.key, p.label] as [string, string]),
   ["K", "Eyedropper"],
   ["G", "Layout grid"],
-  ["X", "X-ray outlines"],
+  ["X", "Outlines on every element"],
   ["O", "Design overlay"],
+  ["/  or  Ctrl/Cmd + K", "Command palette: search every tool"],
   ["Click", "Select element"],
   ["Alt", "Hold to measure from the selection"],
   ["Space", "Pin the selected element"],
