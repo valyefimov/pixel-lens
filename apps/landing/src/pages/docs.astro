@@ -21,7 +21,8 @@ const shortcuts = [
   ["E", "Live edit: edit CSS of the selected element, double-click to edit text"],
   ["K", "Eyedropper: sample any pixel on screen"],
   ["G", "Toggle the layout grid"],
-  ["X", "Toggle X-ray outlines on every element"],
+  ["X", "Toggle outlines on every element"],
+  ["/ or Ctrl/Cmd + K", "Open the command palette"],
   ["O", "Design overlay settings"],
   ["C · T · A · U · P · D", "Colors · Typography · Assets · Audit · Page report · Changes"],
   ["?", "Show all shortcuts"],
@@ -98,6 +99,7 @@ pnpm --filter @pixel-lens/extension build</code></pre>
       <ol>
         <li>Open any page and click the Pixel Lens icon, or press <kbd class="kbd">Alt</kbd> <kbd class="kbd">Shift</kbd> <kbd class="kbd">P</kbd>.</li>
         <li>Hover elements. The inspector card shows size, box model, typography, colors and contrast.</li>
+        <li>Press <kbd class="kbd">/</kbd> to open the command palette and search for any tool.</li>
         <li>Click an element to select it, then hold <kbd class="kbd">Alt</kbd> and hover another to see the distance between them.</li>
         <li>Press <kbd class="kbd">?</kbd> for all shortcuts and <kbd class="kbd">Esc</kbd> to leave.</li>
       </ol>
@@ -123,10 +125,16 @@ pnpm --filter @pixel-lens/extension build</code></pre>
         Click the top or left ruler to drop a guide, drag it to reposition, drag it back onto the ruler to delete it. Distances between
         neighbouring guides are labelled.
       </p>
-      <h3>Layout grid & X-ray</h3>
+      <h3>Command palette</h3>
+      <p>
+        Pixel Lens keeps one small button in the corner of the page. It shows the active tool, and clicking it (or pressing <kbd class="kbd">/</kbd>
+        or <kbd class="kbd">Ctrl</kbd>/<kbd class="kbd">Cmd</kbd> <kbd class="kbd">K</kbd>) opens a palette that lists every tool, panel and overlay. Type a name
+        or a keyword (&quot;spacing&quot; finds Measure, &quot;contrast&quot; finds Audit), move with the arrow keys and press Enter. Panels open as a popover above the button.
+      </p>
+      <h3>Layout grid & outlines</h3>
       <p>
         <kbd class="kbd">G</kbd> overlays a centred column grid (columns, gutter, margin, max width and color are configurable in Settings).
-        <kbd class="kbd">X</kbd> outlines every element so you can see the page structure at a glance.
+        <kbd class="kbd">X</kbd> draws an outline around every element so you can see the page structure at a glance.
       </p>
       <h3>Design overlay</h3>
       <p>
@@ -227,7 +235,7 @@ packages/mcp     MCP server + WebSocket bridge</code></pre>
         <li>
           The overlay (<code>entrypoints/overlay.content</code>) is a runtime-registered content script. Its React UI renders
           into a shadow root so page CSS and overlay CSS never mix. A tiny external store drives the layers (SVG highlights, rulers, grid),
-          the inspector card, the dock and the panels.
+          the inspector card, the lens button with its command palette, and the panels.
         </li>
         <li>
           The design overlay renders into a separate light-DOM host: the overlay host is a stacking context, which would

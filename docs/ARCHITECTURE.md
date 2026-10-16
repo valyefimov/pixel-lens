@@ -9,8 +9,8 @@ Pixel Lens is a pnpm monorepo with two apps (the extension and the website) and 
 │  ┌──────────────────────────────┐      ┌───────────────────────┐  │
 │  │ <pixel-lens-overlay>         │◀────▶│ background.ts         │  │
 │  │   shadow root                │ msg  │  • action / shortcut  │  │
-│  │   React: layers, card, dock, │      │  • scripting.execute  │  │
-│  │   panels                     │      │  • captureVisibleTab  │  │
+│  │   React: layers, card, lens, │      │  • scripting.execute  │  │
+│  │   palette, panels            │      │  • captureVisibleTab  │  │
 │  │ <pixel-lens-design>          │      │  • Bridge (WS client) │  │
 │  │ <style data-pixel-lens>      │      └──────────┬────────────┘  │
 │  └──────────────────────────────┘                 │               │
@@ -56,6 +56,7 @@ The manifest asks for `activeTab`, `scripting`, `storage` and `alarms`. The over
 - State lives in a tiny external store (`overlay/store.ts`) read through `useSyncExternalStore`. Global listeners (pointer, keyboard, scroll, paste, drop) are attached in the capture phase and write to the store; components subscribe to slices.
 - The layers are SVG: box model shading and distances (`ElementLayer`), rulers and guides (`RulerLayer`), column grid (`GridLayer`). Positions are viewport coordinates from `getBoundingClientRect`; a `frame` counter bumped on scroll/resize via `requestAnimationFrame` triggers re-measurement.
 - The design overlay renders into a separate light-DOM host (`<pixel-lens-design>`). The overlay's shadow host is a stacking context, which would isolate `mix-blend-mode: difference` from the page.
+- The lens button and the command palette (`Lens.tsx`, `commands.ts`) replace a toolbar: `COMMANDS` is the single list of tools, panels and overlays, searched by label, shortcut and keywords. Panels are popovers anchored above the button.
 - While an element tool is active, `pointerdown`, `mousedown`, `mouseup` and `click` on the page are cancelled in the capture phase so links and buttons do not fire. Events whose composed path contains the overlay are left alone.
 
 ### Live editing (`lib/edits.ts`)

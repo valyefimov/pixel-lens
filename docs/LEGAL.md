@@ -10,7 +10,7 @@ Third-party packages keep their own licenses. See [THIRD_PARTY_NOTICES.md](../TH
 
 ## Original work
 
-The code, text, icons and illustrations in this repository were written for Pixel Lens. Nothing was copied from other browser extensions, their source code, store listings, websites or marketing material. Common features of design-inspection tools (rulers, box model overlays, color pickers, contrast checks) are functional ideas used across many products, and Pixel Lens implements them independently.
+The code, text, icons and illustrations in this repository were written for Pixel Lens. No code, text, icons or images were copied from other browser extensions or their websites. Common features of design-inspection tools (rulers, box model overlays, color pickers, contrast checks) are functional ideas used across many products, and Pixel Lens implements them independently.
 
 Contributors must only submit work they have the right to license under MIT. Do not paste code, copy, screenshots, icons or other assets from other products into this repository, and do not decompile or copy from other extensions. If you are unsure whether something can be included, ask in an issue first.
 

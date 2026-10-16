@@ -39,7 +39,8 @@
 | Assets | Images, inline SVGs, background images and videos, ready to download. | `A` |
 | Audit | WCAG AA/AAA contrast failures and SEO basics, with one-click jump to the element. | `U` |
 | Page report | Page weight by resource type, detected technologies, social preview. | `P` |
-| Grid & X-ray | Configurable column grid and outlines on every element. | `G` `X` |
+| Grid & outlines | Configurable column grid and outlines on every element. | `G` `X` |
+| Command palette | One small button in the corner instead of a toolbar. Search every tool, panel and overlay by name or keyword. | `/` or `Ctrl/Cmd+K` |
 | Agent bridge | Local MCP server so Claude Code, Cursor or Windsurf can inspect, measure, edit and screenshot the active tab. | |
 
 Arrow keys walk the DOM tree (parent, child, siblings), `Space` pins, `Esc` backs out, `?` lists every shortcut.
