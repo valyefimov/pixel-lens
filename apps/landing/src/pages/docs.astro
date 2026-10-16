@@ -76,7 +76,7 @@ const tools = [
         Pixel Lens is not in the Chrome Web Store yet. Until it is, install it from GitHub:
       </p>
       <ol>
-        <li>Download <code>pixel-lens-1.0.1-chrome.zip</code> from the <a href={`${SITE.github}/releases/latest`}>latest release</a> and unzip it.</li>
+        <li>Download the Chrome zip (<code>pixel-lens-&lt;version&gt;-chrome.zip</code>) from the <a href={`${SITE.github}/releases/latest`}>latest release</a> and unzip it.</li>
         <li>Open <code>chrome://extensions</code> (or <code>edge://extensions</code>, <code>brave://extensions</code>).</li>
         <li>Turn on <strong>Developer mode</strong>.</li>
         <li>Click <strong>Load unpacked</strong> and choose the unzipped folder.</li>
@@ -93,7 +93,7 @@ pnpm --filter @pixel-lens/extension build</code></pre>
         <li>Turn on <strong>Developer mode</strong>.</li>
         <li>Click <strong>Load unpacked</strong> and choose <code>apps/extension/.output/chrome-mv3</code>.</li>
       </ol>
-      <p>For Firefox (experimental), download <code>pixel-lens-1.0.0-firefox.zip</code> from the release, or run <code>pnpm --filter @pixel-lens/extension build:firefox</code>, and load it as a temporary add-on from <code>about:debugging</code>.</p>
+      <p>For Firefox (experimental), download the Firefox zip from the release, or run <code>pnpm --filter @pixel-lens/extension build:firefox</code>, and load it as a temporary add-on from <code>about:debugging</code>.</p>
 
       <h2 id="quick-start">Quick start</h2>
       <ol>
