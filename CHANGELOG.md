@@ -2,6 +2,16 @@
 
 All notable changes to this project are documented here. The format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/) and the project uses [Semantic Versioning](https://semver.org).
 
+## [1.2.0] - 2026-10-16
+
+### Extension
+
+- Added: a "Pixel Lens" tab in Chrome DevTools with Colors, Typography, Audit and Page report. It reads the inspected page through DevTools, so it needs no extra permission and no content script. Clicking a contrast issue selects that element in the Elements panel, and the panel refreshes when the page navigates.
+
+### MCP server (`@vefimov/pixel-lens`)
+
+- No changes. The npm package stays at 1.0.0.
+
 ## [1.1.0] - 2026-10-16
 
 ### Extension
@@ -54,6 +64,7 @@ First public release.
 
 - Landing page with a working inspector demo, documentation, privacy policy and terms at https://pixel-lens.yefimov.tech.
 
+[1.2.0]: https://github.com/valyefimov/pixel-lens/releases/tag/v1.2.0
 [1.1.0]: https://github.com/valyefimov/pixel-lens/releases/tag/v1.1.0
 [1.0.1]: https://github.com/valyefimov/pixel-lens/releases/tag/v1.0.1
 [1.0.0]: https://github.com/valyefimov/pixel-lens/releases/tag/v1.0.0
